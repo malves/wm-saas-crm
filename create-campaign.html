@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsletterPro - Créer une campagne</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#141416',
+            background: '#F9F9F9',
+            card: '#FFFFFF',
+            muted: '#777E90',
+            border: '#E2E2E2',
+            success: '#31CB6A',
+            danger: '#E23333',
+            warning: '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-primary min-h-screen">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-card min-h-screen p-6 flex flex-col fixed left-0 top-0 bottom-0 hidden md:flex border-r border-border">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-primary">NewsletterPro</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 space-y-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          Newsletters
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition justify-between">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+            </svg>
+            Subscribers
+          </div>
+          <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-full font-medium">2.4K</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Templates
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+
+      <!-- Bottom Links -->
+      <div class="space-y-1 pt-6 border-t border-border">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Documentation
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Settings
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8 space-y-6">
+      <!-- Header Desktop -->
+      <div class="hidden md:flex items-center justify-between gap-4 mb-8">
+        <div class="relative flex-1 max-w-4xl">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/>
+            </svg>
+          </span>
+          <input
+            type="text"
+            placeholder="Rechercher une campagne, un contact ou un template"
+            class="w-full h-14 bg-[#e8eaec] border border-[#e6e8ec] rounded-[18px] pl-14 pr-5 text-sm text-primary placeholder:text-muted shadow-[0_14px_45px_-26px_rgba(20,20,22,0.65)] focus:outline-none focus:border-[#d7d9dd] focus:ring-2 focus:ring-primary/12 transition-colors"
+          >
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button class="w-11 h-11 rounded-2xl bg-white border border-border flex items-center justify-center text-primary hover:-translate-y-0.5 transition shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7"/>
+            </svg>
+          </button>
+
+          <div class="relative">
+            <button id="notif-toggle" class="w-11 h-11 rounded-2xl bg-white border border-border flex items-center justify-center text-primary hover:-translate-y-0.5 transition shadow-sm relative">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.916V4a1 1 0 10-2 0v1.084A6 6 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+              </svg>
+              <span class="absolute -top-1 -right-1 inline-flex w-3 h-3 bg-success rounded-full ring-2 ring-white"></span>
+            </button>
+
+            <!-- Notification popup -->
+            <div id="notif-panel" class="hidden absolute right-0 mt-3 w-[380px] bg-white rounded-2xl shadow-xl border border-border/70 z-20">
+              <div class="flex items-center justify-between px-5 py-4 border-b border-border/70">
+                <div class="font-semibold text-primary">Notifications</div>
+                <button class="text-sm text-muted hover:text-primary font-medium">Tout marquer comme lu</button>
+              </div>
+              <div class="max-h-[420px] overflow-y-auto divide-y divide-border/60">
+                <div class="flex items-start gap-3 px-5 py-4">
+                  <span class="text-success mt-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                  </span>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <p class="text-sm font-semibold text-primary">Ouverture en hausse</p>
+                      <span class="text-[11px] text-muted">09 Oct 2022, 11:30</span>
+                    </div>
+                    <p class="text-sm text-muted">Newsletter "Welcome series" a atteint 52% d'ouverture.</p>
+                    <button class="text-xs text-primary font-semibold border border-border px-3 py-1 rounded-lg">Voir le dashboard</button>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 px-5 py-4">
+                  <span class="text-primary mt-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"/></svg>
+                  </span>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <p class="text-sm font-semibold text-primary">Nouveau lead importé</p>
+                      <span class="text-[11px] text-muted">07 Oct 2022, 10:30</span>
+                    </div>
+                    <p class="text-sm text-muted">1 250 contacts ajoutés à "Clients Pro".</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-primary font-semibold bg-primary/5 px-3 py-1 rounded-lg">Listes</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 px-5 py-4">
+                  <span class="text-success mt-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                  </span>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <p class="text-sm font-semibold text-primary">Template approuvé</p>
+                      <span class="text-[11px] text-muted">06 Oct 2022, 23:44</span>
+                    </div>
+                    <p class="text-sm text-muted">"Offre d'automne" est prêt à l'envoi.</p>
+                    <button class="text-xs text-primary font-semibold border border-border px-3 py-1 rounded-lg">Lancer une campagne</button>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 px-5 py-4">
+                  <span class="text-primary mt-1">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"/></svg>
+                  </span>
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <p class="text-sm font-semibold text-primary">Routine automatisée</p>
+                      <span class="text-[11px] text-muted">05 Oct 2022, 14:17</span>
+                    </div>
+                    <p class="text-sm text-muted">Workflow "Onboarding" a envoyé 238 emails.</p>
+                    <span class="inline-flex items-center gap-1 text-xs text-primary font-semibold bg-primary/5 px-3 py-1 rounded-lg">Automations</span>
+                  </div>
+                </div>
+              </div>
+              <div class="px-5 py-3 border-t border-border/70 text-sm text-primary font-semibold hover:bg-background transition">
+                Voir toutes les notifications
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white border border-border rounded-2xl px-3 py-2 shadow-sm">
+            <div class="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center font-bold">AK</div>
+            <div>
+              <p class="text-sm font-semibold leading-tight">Alesia K.</p>
+              <p class="text-xs text-muted">Responsable CRM</p>
+            </div>
+            <svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="bg-card rounded-2xl p-4 shadow-sm border border-border">
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold">1. Destinataires</div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success text-sm font-semibold">2. Contenu</div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-background text-primary text-sm font-semibold border border-border">3. Paramètres</div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-background text-muted text-sm font-semibold border border-dashed border-border">4. Résumé</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div class="xl:col-span-2 space-y-6">
+          <!-- Destinataires -->
+          <section class="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">Destinataires</h2>
+                <p class="text-muted text-sm">Choisissez vos listes et appliquez des filtres de propreté.</p>
+              </div>
+              <span class="text-sm font-semibold text-primary bg-primary/5 px-3 py-1 rounded-full">12 540 contacts</span>
+            </div>
+
+            <div class="space-y-3">
+              <label class="text-sm font-semibold text-primary">Listes cibles</label>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-full bg-primary text-white text-sm font-semibold">Clients Pro</span>
+                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20">News mensuelle</span>
+                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20">Inactifs &lt; 90j</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <label class="flex items-center gap-3 bg-background px-4 py-3 rounded-xl border border-border">
+                <input type="checkbox" class="h-4 w-4 rounded border-muted text-primary focus:ring-primary">
+                <span class="text-sm text-primary font-semibold">Supprimer doublons</span>
+              </label>
+              <label class="flex items-center gap-3 bg-background px-4 py-3 rounded-xl border border-border">
+                <input type="checkbox" class="h-4 w-4 rounded border-muted text-primary focus:ring-primary">
+                <span class="text-sm text-primary font-semibold">Exclure désabonnés récents</span>
+              </label>
+              <label class="flex items-center gap-3 bg-background px-4 py-3 rounded-xl border border-border">
+                <input type="checkbox" class="h-4 w-4 rounded border-muted text-primary focus:ring-primary">
+                <span class="text-sm text-primary font-semibold">Limiter à 1 envoi / 24h</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- Objet -->
+          <section class="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">Objet & préheader</h2>
+                <p class="text-muted text-sm">Optimisez l’ouverture avec un objet clair et un préheader utile.</p>
+              </div>
+              <button class="text-sm font-semibold text-primary border border-border px-3 py-2 rounded-xl bg-background hover:-translate-y-0.5 transition">Idées IA</button>
+            </div>
+
+            <div class="space-y-3">
+              <label class="text-sm font-semibold text-primary">Objet</label>
+              <div class="relative">
+                <input type="text" placeholder="Votre newsletter est prête : nos actus + une offre dédiée" class="w-full bg-background border border-border rounded-xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+                <div class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted">68/100</div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <label class="text-sm font-semibold text-primary">Préheader</label>
+              <input type="text" placeholder="Un résumé court qui donne envie de cliquer (affiché dans la boîte mail)" class="w-full bg-background border border-border rounded-xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+            </div>
+          </section>
+
+          <!-- Contenu -->
+          <section class="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">Contenu</h2>
+                <p class="text-muted text-sm">Assemblez vos blocs et personnalisez avec les variables.</p>
+              </div>
+              <div class="flex items-center gap-2 bg-background rounded-xl px-3 py-2 border border-border text-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+                Builder actif
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+              <div class="lg:col-span-3 space-y-4">
+                <div class="flex gap-2 text-sm font-semibold">
+                  <button class="px-3 py-2 rounded-lg bg-primary text-white">Builder</button>
+                  <button class="px-3 py-2 rounded-lg bg-background text-primary border border-border">HTML</button>
+                  <button class="px-3 py-2 rounded-lg bg-background text-primary border border-border">Aperçu mobile</button>
+                </div>
+                <div class="bg-background border border-dashed border-border rounded-2xl min-h-[260px] flex items-center justify-center text-muted text-sm px-6">
+                  Glissez vos blocs ici (Titre, Paragraphe, Bouton, Image, Colonnes...)
+                </div>
+              </div>
+              <div class="bg-background border border-border rounded-2xl p-4 space-y-4">
+                <h3 class="font-semibold text-primary text-sm">Variables</h3>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-semibold">{{first_name}}</span>
+                  <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/10">{{company}}</span>
+                  <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/10">{{unsubscribe_link}}</span>
+                </div>
+                <h3 class="font-semibold text-primary text-sm">Styles rapides</h3>
+                <div class="space-y-2 text-sm text-muted">
+                  <div class="flex items-center justify-between">
+                    <span>Rayon des boutons</span>
+                    <span class="font-semibold text-primary">14px</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Couleur CTA</span>
+                    <span class="font-semibold text-primary">#141416</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Espacement blocs</span>
+                    <span class="font-semibold text-primary">24px</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tests -->
+          <section class="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">Tests & validation</h2>
+                <p class="text-muted text-sm">Envoyez des tests et vérifiez la délivrabilité.</p>
+              </div>
+              <span class="text-xs font-semibold text-success bg-success/10 px-3 py-1 rounded-full">DKIM/SPF OK</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="flex items-center gap-3 bg-background px-4 py-3 rounded-xl border border-border">
+                <input type="email" placeholder="email@equipe.com" class="flex-1 bg-transparent outline-none text-primary placeholder:text-muted">
+                <button class="text-sm font-semibold text-primary">+ Ajouter</button>
+              </div>
+              <div class="flex items-center gap-3 bg-background px-4 py-3 rounded-xl border border-border">
+                <button class="px-3 py-2 rounded-lg bg-primary text-white text-sm font-semibold">M’envoyer</button>
+                <button class="px-3 py-2 rounded-lg bg-primary/10 text-primary text-sm font-semibold">Équipe marketing</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+              <div class="flex items-center gap-2 px-4 py-3 rounded-xl bg-success/10 text-success font-semibold">
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+                Liens valides
+              </div>
+              <div class="flex items-center gap-2 px-4 py-3 rounded-xl bg-success/10 text-success font-semibold">
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+                Images chargées
+              </div>
+              <div class="flex items-center gap-2 px-4 py-3 rounded-xl bg-warning/10 text-warning font-semibold">
+                <span class="w-2 h-2 rounded-full bg-warning"></span>
+                Check anti-spam à confirmer
+              </div>
+            </div>
+          </section>
+
+          <!-- Paramètres -->
+          <section class="bg-card rounded-2xl p-6 shadow-sm border border-border space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">Paramètres d’envoi</h2>
+                <p class="text-muted text-sm">Expéditeur, planning et tracking.</p>
+              </div>
+              <span class="text-xs font-semibold text-primary bg-primary/5 px-3 py-1 rounded-full">Anti-fatigue : activée</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-primary">Nom expéditeur</label>
+                <input type="text" placeholder="Léa de Welcoming" class="w-full bg-background border border-border rounded-xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-primary">Email expéditeur</label>
+                <input type="email" placeholder="lea@welcoming.io" class="w-full bg-background border border-border rounded-xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-primary">Répondre à</label>
+                <input type="email" placeholder="support@welcoming.io" class="w-full bg-background border border-border rounded-xl px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-primary">Planning</label>
+                <div class="flex gap-2">
+                  <button class="px-3 py-2 rounded-lg bg-primary text-white text-sm font-semibold">Envoyer maintenant</button>
+                  <button class="px-3 py-2 rounded-lg bg-background text-primary text-sm font-semibold border border-border">Programmer</button>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <input type="date" class="bg-background border border-border rounded-lg px-3 py-2 text-sm text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+                  <input type="time" class="bg-background border border-border rounded-lg px-3 py-2 text-sm text-primary outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <label class="text-sm font-semibold text-primary">UTM (tracking)</label>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <input type="text" placeholder="utm_source=newsletter" class="bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+                <input type="text" placeholder="utm_medium=email" class="bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+                <input type="text" placeholder="utm_campaign=lancement-q4" class="bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-primary placeholder:text-muted">
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Summary -->
+        <aside class="xl:col-span-1">
+          <div class="sticky top-6 space-y-4">
+            <div class="bg-card rounded-2xl p-5 shadow-sm border border-border space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-primary">Résumé</h3>
+                <span class="text-xs font-semibold text-success bg-success/10 px-2.5 py-1 rounded-full">Score prévisionnel 72/100</span>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="flex items-center justify-between">
+                  <span class="text-muted">Objet</span>
+                  <span class="font-semibold text-primary text-right">Votre newsletter est prête...</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-muted">Listes</span>
+                  <span class="font-semibold text-primary text-right">3 sélectionnées</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-muted">Expéditeur</span>
+                  <span class="font-semibold text-primary text-right">Léa &lt;lea@welcoming.io&gt;</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-muted">Envoi</span>
+                  <span class="font-semibold text-primary text-right">Programmer</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-muted">Volume estimé</span>
+                  <span class="font-semibold text-primary text-right">12 540</span>
+                </div>
+              </div>
+              <button class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary/90 transition shadow-lg">
+                Lancer la campagne
+              </button>
+              <button class="w-full bg-background text-primary py-3 rounded-xl font-semibold border border-border hover:-translate-y-0.5 transition">
+                Prévisualiser
+              </button>
+            </div>
+
+            <div class="bg-card rounded-2xl p-5 shadow-sm border border-border space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-success"></span>
+                <h3 class="font-semibold text-primary">Check-list avant envoi</h3>
+              </div>
+              <ul class="space-y-2 text-sm text-primary">
+                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-success"></span> DKIM / SPF validés</li>
+                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-success"></span> Lien de désinscription présent</li>
+                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-success"></span> Images optimisées &lt; 1Mo</li>
+                <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-warning"></span> Test anti-spam conseillé</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+  <script>
+    const notifToggle = document.getElementById('notif-toggle');
+    const notifPanel = document.getElementById('notif-panel');
+
+    function closeNotif() {
+      notifPanel?.classList.add('hidden');
+    }
+
+    notifToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifPanel?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!notifPanel || !notifToggle) return;
+      if (!notifPanel.contains(e.target) && !notifToggle.contains(e.target)) {
+        closeNotif();
+      }
+    });
+  </script>
+</body>
+</html>
+
