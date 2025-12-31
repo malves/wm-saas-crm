@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsletterPro - Flux d'activité</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#141416',
+            background: '#F4F5F7',
+            card: '#FFFFFF',
+            muted: '#7D7F89',
+            border: '#E1E2E6',
+            accent: '#0F0F13'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .glass {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(16px);
+    }
+  </style>
+</head>
+<body class="bg-background text-primary min-h-screen">
+  <div class="flex">
+    <!-- Sidebar copied from index -->
+    <aside class="w-64 bg-card min-h-screen p-6 flex flex-col fixed left-0 top-0 bottom-0 hidden md:flex border-r border-border">
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-primary">NewsletterPro</span>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          Campaigns
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition justify-between">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+            </svg>
+            Subscribers
+          </div>
+          <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-full font-medium">2.4K</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Templates
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+      <div class="space-y-1 pt-6 border-t border-border">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Documentation
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Settings
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8">
+      <!-- Mobile header -->
+      <div class="md:hidden flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">NewsletterPro</span>
+        </div>
+        <button class="p-2 text-muted hover:text-primary">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-10">
+        <!-- Hero / headline -->
+        <section class="relative overflow-hidden rounded-[32px] border border-border bg-card p-8 md:p-12">
+          <div class="absolute inset-y-0 right-0 w-1/2 bg-[#101014] text-white rounded-l-[48px] hidden lg:flex">
+            <div class="relative w-full">
+              <div class="absolute inset-0 bg-gradient-to-br from-[#101014] via-[#15161a] to-[#0c0c0f]"></div>
+              <div class="relative p-10 h-full flex flex-col justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-4">Status live</p>
+                  <p class="text-5xl font-semibold">92<span class="text-white/50 text-2xl align-top ml-2">/100</span></p>
+                  <p class="text-white/70 text-sm mt-2">Score qualité global · rafraîchi à <span id="scoreTime">--:--</span></p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                  <div class="glass rounded-2xl p-4 text-primary">
+                    <p class="text-xs uppercase tracking-[0.3em] text-muted">Deliverability</p>
+                    <p class="text-2xl font-semibold mt-1">98%</p>
+                    <p class="text-muted text-xs mt-1">warm pools</p>
+                  </div>
+                  <div class="glass rounded-2xl p-4 text-primary">
+                    <p class="text-xs uppercase tracking-[0.3em] text-muted">Engagement</p>
+                    <p class="text-2xl font-semibold mt-1">87%</p>
+                    <p class="text-muted text-xs mt-1">sur 24h</p>
+                  </div>
+                  <div class="glass rounded-2xl p-4 text-primary">
+                    <p class="text-xs uppercase tracking-[0.3em] text-muted">Incidents</p>
+                    <p class="text-2xl font-semibold mt-1">02</p>
+                    <p class="text-muted text-xs mt-1">en cours</p>
+                  </div>
+                  <div class="glass rounded-2xl p-4 text-primary">
+                    <p class="text-xs uppercase tracking-[0.3em] text-muted">Actions</p>
+                    <p class="text-2xl font-semibold mt-1">11</p>
+                    <p class="text-muted text-xs mt-1">planifiées</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="relative z-10 lg:w-1/2 space-y-6">
+            <div class="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-muted">
+              <span>Activity</span>
+              <span class="w-10 h-px bg-border"></span>
+              <span>Live journal</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-semibold leading-tight">
+              Visualisez l'intégralité du flux d'activité newsletters, minute par minute.
+            </h1>
+            <p class="text-muted max-w-xl">
+              Toutes vos équipes CRM, éditorial et data sont synchronisées sur un même flux monochrome, inspiré du template Figma partagé.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <button class="px-5 py-3 rounded-2xl bg-primary text-white font-semibold">Créer une alerte</button>
+              <button class="px-5 py-3 rounded-2xl border border-border text-sm font-semibold text-muted hover:text-primary hover:border-primary transition">Exporter PDF</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="bg-card border border-border rounded-[32px] p-6 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-muted">Filtres</p>
+              <h2 class="text-2xl font-semibold mt-2">Flux temps réel</h2>
+            </div>
+            <div class="flex flex-wrap gap-2 text-sm">
+              <button class="filter-chip px-4 py-2 rounded-full bg-primary text-white" data-filter="all">Tout</button>
+              <button class="filter-chip px-4 py-2 rounded-full border border-border text-muted hover:text-primary" data-filter="alert">Alertes</button>
+              <button class="filter-chip px-4 py-2 rounded-full border border-border text-muted hover:text-primary" data-filter="workflow">Automations</button>
+              <button class="filter-chip px-4 py-2 rounded-full border border-border text-muted hover:text-primary" data-filter="content">Contenu</button>
+              <button class="filter-chip px-4 py-2 rounded-full border border-border text-muted hover:text-primary" data-filter="team">Équipe</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <svg class="w-5 h-5 text-muted absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+                </svg>
+                <input type="text" placeholder="Rechercher un événement" class="pl-9 pr-4 py-2 rounded-full border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/20">
+              </div>
+              <select class="px-4 py-2 rounded-full border border-border bg-background text-sm text-muted focus:outline-none focus:ring-2 focus:ring-primary/20">
+                <option>12 dernières heures</option>
+                <option>24 heures</option>
+                <option>Semaine</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Content grid -->
+        <section class="grid gap-6 xl:grid-cols-[3fr,2fr]">
+          <!-- Timeline column -->
+          <div class="space-y-6">
+            <article class="activity-card bg-card border border-border rounded-[28px] p-6 flex gap-5" data-category="alert">
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-2xl bg-black text-white flex flex-col items-center justify-center text-xs font-semibold">
+                  06:42
+                  <span class="text-[11px] font-normal">LIVE</span>
+                </div>
+                <span class="flex-1 w-[1px] bg-border mt-3 hidden md:block"></span>
+              </div>
+              <div class="flex-1 space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-muted mb-1">Alerte critique · BFMTV</p>
+                    <h3 class="text-xl font-semibold">Rebond > 4,2% sur IP Warm-02</h3>
+                  </div>
+                  <div class="flex flex-wrap gap-2 text-xs">
+                    <span class="px-3 py-1 rounded-full border border-border">Assigné à Louis</span>
+                    <span class="px-3 py-1 rounded-full border border-border bg-background">Incidents</span>
+                  </div>
+                </div>
+                <p class="text-muted text-sm">
+                  Blocage détecté sur les segments “Flash” & “Breaking”. Recommandation : bascule Warm-03 + nettoyage auto des inactifs. Impact : 12 480 contacts.
+                </p>
+              </div>
+            </article>
+
+            <article class="activity-card bg-card border border-border rounded-[28px] p-6 flex gap-5" data-category="workflow">
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-2xl border border-border flex flex-col items-center justify-center text-xs font-semibold">
+                  05:10
+                  <span class="text-[11px] font-normal">Auto</span>
+                </div>
+                <span class="flex-1 w-[1px] bg-border mt-3 hidden md:block"></span>
+              </div>
+              <div class="flex-1 space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-muted mb-1">Automation · Le Figaro</p>
+                    <h3 class="text-xl font-semibold">Variante CTA B +6,1 pts sur conversions</h3>
+                  </div>
+                  <span class="px-3 py-1 rounded-full border border-border text-xs">Optimisation auto</span>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-3 text-sm">
+                  <div class="rounded-2xl border border-border p-4">
+                    <p class="text-muted text-xs uppercase tracking-[0.3em]">Ouverture</p>
+                    <p class="text-xl font-semibold mt-1">34,8%</p>
+                  </div>
+                  <div class="rounded-2xl border border-border p-4">
+                    <p class="text-muted text-xs uppercase tracking-[0.3em]">Clic</p>
+                    <p class="text-xl font-semibold mt-1">9,3%</p>
+                  </div>
+                  <div class="rounded-2xl border border-border p-4">
+                    <p class="text-muted text-xs uppercase tracking-[0.3em]">Upsell</p>
+                    <p class="text-xl font-semibold mt-1">+86</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="activity-card bg-card border border-border rounded-[28px] p-6 flex gap-5" data-category="content">
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-2xl border border-dashed border-border flex flex-col items-center justify-center text-xs font-semibold">
+                  04:32
+                  <span class="text-[11px] font-normal">Send</span>
+                </div>
+              </div>
+              <div class="flex-1 space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-muted mb-1">Campagne · Les Échos</p>
+                    <h3 class="text-xl font-semibold">Brief Eco envoyé (217K contacts)</h3>
+                  </div>
+                  <div class="text-right text-sm text-muted">
+                    <p>Temps d’envoi</p>
+                    <p class="text-primary font-semibold">3 min 08</p>
+                  </div>
+                </div>
+                <p class="text-muted text-sm">Ajout module audio + section “À retenir” monochrome. Validation CRM OK, SLA 98%.</p>
+                <div class="flex flex-wrap gap-2 text-xs">
+                  <span class="px-3 py-1 rounded-full border border-border">Préparée par Camille</span>
+                  <span class="px-3 py-1 rounded-full border border-border">Mobile first</span>
+                  <span class="px-3 py-1 rounded-full border border-border">Offre premium</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="activity-card bg-card border border-border rounded-[28px] p-6 flex gap-5" data-category="team">
+              <div class="flex flex-col items-center">
+                <div class="w-14 h-14 rounded-2xl border border-border flex flex-col items-center justify-center text-xs font-semibold">
+                  03:05
+                  <span class="text-[11px] font-normal">Team</span>
+                </div>
+              </div>
+              <div class="flex-1 space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-muted mb-1">Équipe</p>
+                    <h3 class="text-xl font-semibold">Sprint “Rentrée abonnés”</h3>
+                  </div>
+                  <button class="px-3 py-1 rounded-full border border-border text-xs text-primary">Ajouter un jalon</button>
+                </div>
+                <p class="text-muted text-sm">3 briefs prêts, 2 en revue design. Livraison estimée lundi 8 janvier.</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Side column -->
+          <div class="space-y-6">
+            <section class="bg-card border border-border rounded-[28px] p-6">
+              <div class="flex items-center justify-between mb-6">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.4em] text-muted">Alertes</p>
+                  <h3 class="text-xl font-semibold mt-1">Priorités</h3>
+                </div>
+                <button class="text-sm text-muted hover:text-primary">Voir tout</button>
+              </div>
+              <div class="space-y-4">
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">Blocage IP Warm-02</p>
+                    <span class="text-muted">12 min</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">Segments “Actu Flash”. Assigné à Louis.</p>
+                  <button class="text-xs text-primary font-semibold mt-3">Contourner</button>
+                </div>
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">CTA expiré Culture+</p>
+                    <span class="text-muted">27 min</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">Lien billetterie obsolète. Assigné à Anaïs.</p>
+                  <button class="text-xs text-primary font-semibold mt-3">Mettre à jour</button>
+                </div>
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">Segment VIP inactif</p>
+                    <span class="text-muted">1 h</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">60% n’ont pas reçu la relance.</p>
+                  <button class="text-xs text-primary font-semibold mt-3">Relancer</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="bg-card border border-border rounded-[28px] p-6">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold">Équipe connectée</h3>
+                <span class="px-3 py-1 rounded-full border border-border text-xs text-muted">6 en ligne</span>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">CB</div>
+                    <div>
+                      <p class="font-semibold text-sm">Camille Bernard</p>
+                      <p class="text-muted text-xs">Owner · Figaro</p>
+                    </div>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-black text-white text-xs">Live</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">LM</div>
+                    <div>
+                      <p class="font-semibold text-sm">Louis Ménard</p>
+                      <p class="text-muted text-xs">Growth & CRM</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">Focus mode</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">AD</div>
+                    <div>
+                      <p class="font-semibold text-sm">Anaïs Dupont</p>
+                      <p class="text-muted text-xs">Design & Template</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">Mobile</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">JL</div>
+                    <div>
+                      <p class="font-semibold text-sm">Julien Lang</p>
+                      <p class="text-muted text-xs">Data & IA</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">On call</span>
+                </div>
+              </div>
+              <button class="w-full mt-5 px-4 py-2 rounded-xl border border-dashed border-border text-sm font-semibold text-muted hover:text-primary hover:border-primary transition">
+                Planifier un relais
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <!-- Tableau principal -->
+        <section class="bg-card border border-border rounded-[32px] p-6 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-muted">Tableau</p>
+              <h2 class="text-2xl font-semibold mt-2">Planche d’ordonnancement</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-4 py-2 rounded-full border border-border text-sm text-muted hover:text-primary hover:border-primary transition">Exporter CSV</button>
+              <button class="px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold">Synchroniser CRM</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead>
+                <tr class="text-xs uppercase tracking-[0.3em] text-muted border-b border-border">
+                  <th class="text-left py-3 font-medium">Heure</th>
+                  <th class="text-left py-3 font-medium">Newsletter</th>
+                  <th class="text-left py-3 font-medium">Action</th>
+                  <th class="text-left py-3 font-medium">Segment</th>
+                  <th class="text-left py-3 font-medium">Responsable</th>
+                  <th class="text-right py-3 font-medium">Statut</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4">
+                    <div class="flex items-center gap-2">
+                      <span class="text-lg font-semibold">06:45</span>
+                      <span class="px-2 py-0.5 rounded-full bg-black text-white text-[11px] tracking-widest uppercase">Live</span>
+                    </div>
+                    <p class="text-muted text-xs mt-1">il y a 3 min</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">BFMTV · Flash Info</p>
+                    <p class="text-muted text-xs">Flux breaking news</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Purge inactifs Warm-02</p>
+                    <p class="text-muted text-xs">switch vers pool 03 + nettoyage</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Actu Flash</span>
+                  </td>
+                  <td class="py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-xs font-semibold">LM</div>
+                      <div>
+                        <p class="font-semibold text-sm">Louis Ménard</p>
+                        <p class="text-muted text-xs">Growth & CRM</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 text-right">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs text-primary">Incident</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <div class="flex items-center gap-2">
+                      <span class="text-lg font-semibold">05:58</span>
+                      <span class="px-2 py-0.5 rounded-full border border-border text-[11px] tracking-widest uppercase text-muted">Sync</span>
+                    </div>
+                    <p class="text-muted text-xs mt-1">il y a 50 min</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Les Échos · Brief Eco</p>
+                    <p class="text-muted text-xs">Édition matinale</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Validation CRM finale</p>
+                    <p class="text-muted text-xs">contrôle deliverability + test mobile</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Premium Business</span>
+                  </td>
+                  <td class="py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-xs font-semibold">CB</div>
+                      <div>
+                        <p class="font-semibold text-sm">Camille Bernard</p>
+                        <p class="text-muted text-xs">Owner</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 text-right">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs text-muted">À surveiller</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <div class="flex items-center gap-2">
+                      <span class="text-lg font-semibold">05:10</span>
+                      <span class="px-2 py-0.5 rounded-full border border-border text-[11px] tracking-widest uppercase text-muted">Auto</span>
+                    </div>
+                    <p class="text-muted text-xs mt-1">il y a 1 h 35</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Le Figaro · Briefing matin</p>
+                    <p class="text-muted text-xs">Séquence welcome</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Test CTA B</p>
+                    <p class="text-muted text-xs">+6,1 pts conversions</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Premium</span>
+                  </td>
+                  <td class="py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-xs font-semibold">LM</div>
+                      <div>
+                        <p class="font-semibold text-sm">Louis Ménard</p>
+                        <p class="text-muted text-xs">Growth & CRM</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 text-right">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs text-success">Stable</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <div class="flex items-center gap-2">
+                      <span class="text-lg font-semibold">03:45</span>
+                      <span class="px-2 py-0.5 rounded-full border border-border text-[11px] tracking-widest uppercase text-muted">Plan</span>
+                    </div>
+                    <p class="text-muted text-xs mt-1">il y a 3 h</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Culture+ · Curations soir</p>
+                    <p class="text-muted text-xs">Template audio</p>
+                  </td>
+                  <td class="py-4">
+                    <p class="font-semibold">Mise à jour CTA</p>
+                    <p class="text-muted text-xs">switch event + tests QA</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Culture</span>
+                  </td>
+                  <td class="py-4">
+                    <div class="flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-xs font-semibold">AD</div>
+                      <div>
+                        <p class="font-semibold text-sm">Anaïs Dupont</p>
+                        <p class="text-muted text-xs">Design</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 text-right">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs text-primary">En production</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chips = document.querySelectorAll('.filter-chip');
+      const cards = document.querySelectorAll('.activity-card');
+      const scoreTime = document.getElementById('scoreTime');
+
+      function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        scoreTime.textContent = time;
+      }
+
+      function filterCards(type) {
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          card.style.display = (type === 'all' || type === category) ? 'flex' : 'none';
+        });
+      }
+
+      function setActiveChip(activeChip) {
+        chips.forEach(chip => {
+          if (chip === activeChip) {
+            chip.classList.add('bg-primary', 'text-white');
+            chip.classList.remove('border', 'text-muted');
+          } else {
+            chip.classList.remove('bg-primary', 'text-white');
+            chip.classList.add('border', 'border-border', 'text-muted');
+          }
+        });
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const filter = chip.getAttribute('data-filter');
+          filterCards(filter);
+          setActiveChip(chip);
+        });
+      });
+
+      updateClock();
+      setInterval(updateClock, 60 * 1000);
+    });
+  </script>
+</body>
+</html>
+

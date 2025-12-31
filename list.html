@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsletterPro - Media Newsletters</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#141416',
+            background: '#F9F9F9',
+            card: '#FFFFFF',
+            muted: '#777E90',
+            border: '#E2E2E2',
+            success: '#31CB6A',
+            danger: '#E23333',
+            warning: '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-primary min-h-screen">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-background min-h-screen p-6 flex flex-col fixed left-0 top-0 bottom-0 hidden md:flex border-r border-border">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-primary">NewsletterPro</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 space-y-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="list.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          Newsletters
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Templates
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2z"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+
+      <!-- Bottom Links -->
+      <div class="space-y-1 pt-6 border-t border-border">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Documentation
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Settings
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8">
+      <!-- Mobile Header -->
+      <div class="md:hidden flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">NewsletterPro</span>
+        </div>
+        <button class="p-2 text-muted hover:text-primary">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div>
+          <p class="text-sm text-muted">Newsletters</p>
+          <h1 class="text-3xl font-bold">Media List</h1>
+          <p class="text-muted text-sm mt-2">Gérez vos newsletters média, filtres et statistiques.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="px-4 py-2 rounded-xl border border-border text-muted hover:text-primary hover:border-primary transition text-sm font-semibold">
+            Importer
+          </button>
+          <button class="px-4 py-2 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition">
+            Nouvelle newsletter
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-card border border-border rounded-2xl p-4 mb-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <button class="filter-btn px-3 py-2 rounded-xl bg-primary text-white text-sm font-semibold" data-filter="all">Tout</button>
+            <button class="filter-btn px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition text-sm font-semibold" data-filter="active">Actives</button>
+            <button class="filter-btn px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition text-sm font-semibold" data-filter="paused">En pause</button>
+            <button class="filter-btn px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition text-sm font-semibold" data-filter="archived">Archivées</button>
+          </div>
+          <div class="flex flex-col md:flex-row gap-3 w-full lg:w-auto">
+            <div class="relative flex-1 min-w-[280px]">
+              <input type="text" placeholder="Rechercher une newsletter" class="w-full bg-background border border-border rounded-xl pl-4 pr-10 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+              <svg class="w-5 h-5 text-muted absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+              </svg>
+            </div>
+            <div class="flex items-center gap-2">
+
+              <select class="bg-background border border-border rounded-xl px-3 py-2 text-sm text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                <option>Tri</option>
+                <option>Récents</option>
+                <option>Performants</option>
+                <option>Ordre alphabétique</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- List Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
+        <!-- Card Template -->
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">LE</div>
+              <div class="text-primary font-black text-sm">FIGARO</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Le Figaro</p>
+            <p class="text-muted text-xs">Quotidien national</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 32.4%</span>
+              <span>24.5K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-xl">20</div>
+              <div class="text-primary font-bold text-xs -mt-1">MINUTES</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">20 Minutes</p>
+            <p class="text-muted text-xs">Quotidien gratuit</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 28.7%</span>
+              <span>18.2K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-4 flex flex-col gap-3 items-center text-center min-h-[140px]" data-status="paused">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">OUEST</div>
+              <div class="text-primary font-black text-sm">FRANCE</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Ouest France</p>
+            <p class="text-muted text-xs">Quotidien régional</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200 text-[11px] font-medium">En pause</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 24.1%</span>
+              <span>12.4K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">LES</div>
+              <div class="text-primary font-black text-sm">ECHOS</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Les Echos</p>
+            <p class="text-muted text-xs">Économie & business</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 35.2%</span>
+              <span>9.8K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">LE</div>
+              <div class="text-primary font-black text-sm">MONDE</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Le Monde</p>
+            <p class="text-muted text-xs">International</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 29.8%</span>
+              <span>15.6K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">L'</div>
+              <div class="text-primary font-black text-sm">EQUIPE</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">L'Équipe</p>
+            <p class="text-muted text-xs">Sport</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 26.3%</span>
+              <span>7.9K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-4 flex flex-col gap-3 items-center text-center min-h-[140px]" data-status="draft">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">LIB</div>
+              <div class="text-primary font-black text-sm">ÉRATION</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Libération</p>
+            <p class="text-muted text-xs">Actu & société</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 text-[11px] font-medium">Brouillon</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 23.1%</span>
+              <span>6.2K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">BFM</div>
+              <div class="text-primary font-black text-sm">TV</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">BFMTV</p>
+            <p class="text-muted text-xs">Breaking news</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 21.4%</span>
+              <span>5.4K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-4 flex flex-col gap-3 items-center text-center min-h-[140px]" data-status="archived">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">RTL</div>
+              <div class="text-primary font-black text-sm">INFO</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">RTL Info</p>
+            <p class="text-muted text-xs">Radio & web</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-gray-100 text-gray-600 border border-gray-200 text-[11px] font-medium">Archivée</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 22.6%</span>
+              <span>4.9K subs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="newsletter-card bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition p-6 flex flex-col gap-6 items-center text-center" data-status="active">
+          <div class="w-16 h-16 rounded-xl bg-white border border-border flex items-center justify-center mx-auto mb-2">
+            <div class="text-center leading-tight">
+              <div class="text-primary font-black text-sm">FRANCE</div>
+              <div class="text-primary font-black text-sm">INFO</div>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">France Info</p>
+            <p class="text-muted text-xs">Service public</p>
+          </div>
+          <div class="w-full">
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 text-[11px] font-medium">Active</span>
+            <div class="flex items-center justify-between text-xs text-muted mt-2">
+              <span>Open 25.0%</span>
+              <span>8.1K subs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex items-center justify-between mt-8 text-sm">
+        <p class="text-muted">Affichage de 1 à 6 sur 24 newsletters</p>
+        <div class="flex items-center gap-2">
+          <button class="px-3 py-2 rounded-xl border border-border text-muted hover:text-primary hover:border-primary transition">Précédent</button>
+          <div class="flex items-center gap-1">
+            <span class="px-3 py-2 rounded-xl bg-primary text-white font-semibold">1</span>
+            <span class="px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition cursor-pointer">2</span>
+            <span class="px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition cursor-pointer">3</span>
+            <span class="px-3 py-2 rounded-xl text-muted">...</span>
+            <span class="px-3 py-2 rounded-xl text-muted hover:text-primary hover:bg-background transition cursor-pointer">6</span>
+          </div>
+          <button class="px-3 py-2 rounded-xl border border-border text-muted hover:text-primary hover:border-primary transition">Suivant</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const newsletterCards = document.querySelectorAll('.newsletter-card');
+
+      // Fonction pour filtrer les cartes
+      function filterCards(filterType) {
+        newsletterCards.forEach(card => {
+          const cardStatus = card.getAttribute('data-status');
+
+          if (filterType === 'all') {
+            card.style.display = 'block';
+          } else if (filterType === 'active' && cardStatus === 'active') {
+            card.style.display = 'block';
+          } else if (filterType === 'draft' && cardStatus === 'draft') {
+            card.style.display = 'block';
+          } else if (filterType === 'archived' && cardStatus === 'archived') {
+            card.style.display = 'block';
+          } else if (filterType === 'paused' && cardStatus === 'paused') {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Fonction pour mettre à jour l'état actif des boutons
+      function updateActiveButton(clickedButton) {
+        filterButtons.forEach(button => {
+          if (button === clickedButton) {
+            button.classList.remove('text-muted', 'hover:text-primary', 'hover:bg-background');
+            button.classList.add('bg-primary', 'text-white');
+          } else {
+            button.classList.remove('bg-primary', 'text-white');
+            button.classList.add('text-muted', 'hover:text-primary', 'hover:bg-background');
+          }
+        });
+      }
+
+      // Ajouter les event listeners aux boutons
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const filterType = this.getAttribute('data-filter');
+
+          // Filtrer les cartes
+          filterCards(filterType);
+
+          // Mettre à jour l'état actif du bouton
+          updateActiveButton(this);
+        });
+      });
+
+      // Afficher toutes les cartes au chargement initial
+      filterCards('all');
+    });
+  </script>
+</body>
+</html>
+

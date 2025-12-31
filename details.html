@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsletterPro - Détails</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#141416',
+            background: '#F9F9F9',
+            card: '#FFFFFF',
+            muted: '#777E90',
+            border: '#E2E2E2',
+            success: '#31CB6A',
+            warning: '#F59E0B',
+            danger: '#E23333'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-primary min-h-screen">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-background min-h-screen p-6 flex flex-col fixed left-0 top-0 bottom-0 hidden md:flex border-r border-border">
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-primary">NewsletterPro</span>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="list.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          Newsletters
+        </a>
+        <a href="details.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Détails
+        </a>
+        <a href="activity.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13H5v-2h14v2zM7 17h10v2H7v-2zM7 5h10v2H7V5z"/>
+          </svg>
+          Activité
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+      <div class="space-y-1 pt-6 border-t border-border">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Documentation
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Paramètres
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8">
+      <!-- Mobile Header -->
+      <div class="md:hidden flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">NewsletterPro</span>
+        </div>
+        <button class="p-2 text-muted">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Header -->
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center gap-2 text-sm text-muted mb-2">
+            <a href="list.html" class="hover:text-primary">Newsletters</a>
+            <span>/</span>
+            <span class="text-primary font-medium">Le Figaro</span>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold">Briefing quotidien – Détails</h1>
+          <p class="text-muted text-sm mt-2 max-w-2xl">Vue complète des performances, segments et process automation de la newsletter matinale. Palette volontairement monochrome pour refléter le template fourni.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="px-4 py-2 rounded-xl border border-border text-muted hover:text-primary hover:border-primary transition text-sm font-semibold">Exporter PDF</button>
+          <button class="px-4 py-2 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition">Programmer une édition</button>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Hero (fond clair, sans noir) -->
+        <section class="relative rounded-3xl overflow-hidden bg-card text-primary p-8 md:p-12 border border-border">
+          <div class="grid gap-8 lg:grid-cols-[1.6fr,1fr]">
+            <div class="space-y-6">
+              <div class="flex items-center gap-4 text-xs uppercase tracking-[0.4em]">
+                <span class="text-muted">ÉDITION PREMIUM</span>
+                <span class="px-3 py-1 rounded-full border border-border text-primary bg-background">Active</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-semibold">Le Figaro – Briefing Décideurs</h2>
+              <p class="text-muted max-w-2xl">Sélection business & politique publique, format synthétique + modules audio. Palette claire et monochrome, hiérarchie en capitales et blocs parfaitement alignés.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-background border border-border rounded-2xl p-4">
+                  <p class="text-xs tracking-[0.3em] text-muted uppercase">Abonnés</p>
+                  <p class="text-3xl font-semibold">24 860</p>
+                  <p class="text-xs text-success mt-1">+428 cette semaine</p>
+                </div>
+                <div class="bg-background border border-border rounded-2xl p-4">
+                  <p class="text-xs tracking-[0.3em] text-muted uppercase">Ouverture</p>
+                  <p class="text-3xl font-semibold">32,4%</p>
+                  <p class="text-xs text-muted mt-1">+2,1 pts</p>
+                </div>
+                <div class="bg-background border border-border rounded-2xl p-4">
+                  <p class="text-xs tracking-[0.3em] text-muted uppercase">Clic unique</p>
+                  <p class="text-3xl font-semibold">8,7%</p>
+                  <div class="mt-4 h-2 bg-border rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width:68%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-background text-primary rounded-2xl p-6 space-y-5 border border-border">
+              <div>
+                <h3 class="text-xl font-semibold">Configuration de la newsletter</h3>
+              </div>
+              <div class="space-y-4 text-sm">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-success">DKIM</p>
+                      <p class="text-muted text-xs">Clés de signature configurées</p>
+                    </div>
+                  </div>
+                  <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-success">SPF</p>
+                      <p class="text-muted text-xs">Serveurs autorisés définis</p>
+                    </div>
+                  </div>
+                  <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-muted/20 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-muted" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-muted">DMARC</p>
+                      <p class="text-muted text-xs">Politique anti-spoofing</p>
+                    </div>
+                  </div>
+                  <span class="px-2 py-1 rounded-full bg-muted/10 text-muted text-xs font-semibold">À configurer</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-success">Domaine custom</p>
+                      <p class="text-muted text-xs">nl.figaro.com</p>
+                    </div>
+                  </div>
+                  <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-warning/10 flex items-center justify-center">
+                      <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-warning">Score IP</p>
+                      <p class="text-muted text-xs">Réputation expéditeur</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-lg font-semibold text-warning">10</span>
+                    <span class="text-muted text-sm">/20</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- KPI Strip -->
+        <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted">Newsletters envoyés</p>
+            <h3 class="text-3xl font-semibold">142</h3>
+            <p class="text-xs text-muted">12 dernières heures · +18%</p>
+            <div class="h-1.5 bg-background rounded-full overflow-hidden">
+              <div class="h-full bg-primary" style="width:72%"></div>
+            </div>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted">Taux d'ouverture</p>
+            <h3 class="text-3xl font-semibold">32,4%</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div class="flex justify-between text-muted text-xs"><span>7 derniers jours</span><span>34,2%</span></div>
+                <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-success" style="width:85%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-muted text-xs"><span>30 derniers jours</span><span>31,8%</span></div>
+                <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-primary" style="width:79%"></div></div>
+              </div>
+            </div>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted">Taux de clic</p>
+            <h3 class="text-3xl font-semibold">8,7%</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div class="flex justify-between text-muted text-xs"><span>7 derniers jours</span><span>9,2%</span></div>
+                <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-success" style="width:85%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-muted text-xs"><span>30 derniers jours</span><span>8,4%</span></div>
+                <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-primary" style="width:79%"></div></div>
+              </div>
+            </div>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 flex flex-col text-center min-h-[140px]">
+            <p class="text-xs uppercase tracking-[0.3em] text-muted">Santé de la newsletter</p>
+            <div class="flex items-center justify-center space-x-2 flex-1">
+              <h3 class="text-5xl font-semibold text-primary">8,5</h3>
+              <p class="text-5xl font-semibold text-primary">/ 10</p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Edition timeline + Audience -->
+        <section class="grid gap-6 lg:grid-cols-[1.6fr,1fr]">
+          <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <p class="text-xs uppercase tracking-[0.4em] text-muted">Édition du 31 décembre</p>
+                <h3 class="text-2xl font-semibold">Timeline des blocs</h3>
+              </div>
+              <div class="flex gap-2 text-xs uppercase tracking-[0.25em]">
+                <button class="px-4 py-2 rounded-full border border-border text-muted">Preview</button>
+                <button class="px-4 py-2 rounded-full bg-primary text-white">Rapport</button>
+              </div>
+            </div>
+            <div class="space-y-5">
+              <div class="flex gap-5">
+                <div class="w-16 text-xs text-muted">06h12</div>
+                <div class="flex-1 border-b border-dashed border-border pb-4">
+                  <p class="font-semibold">Hero macro + billet radio</p>
+                  <p class="text-sm text-muted mt-1">Image noir & blanc, CTA inversé.</p>
+                </div>
+                <span class="text-xs text-muted uppercase tracking-[0.3em]">74%</span>
+              </div>
+              <div class="flex gap-5">
+                <div class="w-16 text-xs text-muted">06h18</div>
+                <div class="flex-1 border-b border-dashed border-border pb-4">
+                  <p class="font-semibold">Marchés & data</p>
+                  <p class="text-sm text-muted mt-1">Graphiques greyscale · CAC / Nasdaq.</p>
+                </div>
+                <span class="text-xs text-muted uppercase tracking-[0.3em]">31%</span>
+              </div>
+              <div class="flex gap-5">
+                <div class="w-16 text-xs text-muted">06h25</div>
+                <div class="flex-1">
+                  <p class="font-semibold">Culture & agenda</p>
+                  <p class="text-sm text-muted mt-1">Double colonne magazine + push audio.</p>
+                </div>
+                <span class="text-xs text-muted uppercase tracking-[0.3em]">19%</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-6">
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-muted">Segments</p>
+              <h3 class="text-xl font-semibold">Audience prioritaire</h3>
+            </div>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center justify-between border-b border-border pb-3">
+                <div>
+                  <p class="font-semibold">Cadres supérieurs</p>
+                  <p class="text-muted text-xs">Finance · Droit · Conseil</p>
+                </div>
+                <span class="text-primary font-semibold">42%</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-border pb-3">
+                <div>
+                  <p class="font-semibold">Décideurs publics</p>
+                  <p class="text-muted text-xs">Ministères · Collectivités</p>
+                </div>
+                <span class="text-primary font-semibold">27%</span>
+              </div>
+              <div class="flex items-center justify-between border-b border-border pb-3">
+                <div>
+                  <p class="font-semibold">Passionnés actu</p>
+                  <p class="text-muted text-xs">Abonnement numérique</p>
+                </div>
+                <span class="text-primary font-semibold">19%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="font-semibold">Premium culture</p>
+                  <p class="text-muted text-xs">Arts · Lifestyle</p>
+                </div>
+                <span class="text-primary font-semibold">12%</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Table -->
+        <section class="bg-card border border-border rounded-[32px] p-6 md:p-8 space-y-6">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-muted">Opérations</p>
+              <h3 class="text-2xl font-semibold">Synthèse par newsletter</h3>
+            </div>
+            <div class="flex gap-2 text-xs uppercase tracking-[0.25em]">
+              <button class="px-4 py-2 rounded-full border border-border text-muted">CSV</button>
+              <button class="px-4 py-2 rounded-full bg-primary text-white">Sync CRM</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-3xl border border-border">
+            <table class="min-w-full text-sm">
+              <thead class="bg-background text-muted uppercase text-xs tracking-[0.35em]">
+                <tr>
+                  <th class="px-6 py-4 text-left">Newsletter</th>
+                  <th class="px-6 py-4 text-left">Statut</th>
+                  <th class="px-6 py-4 text-left">Dernière action</th>
+                  <th class="px-6 py-4 text-left">Owner</th>
+                  <th class="px-6 py-4 text-right">Suivi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="px-6 py-5">
+                    <p class="font-semibold">Le Figaro · Briefing matin</p>
+                    <p class="text-muted text-xs">Séquence automation + A/B test</p>
+                  </td>
+                  <td class="px-6 py-5">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs uppercase tracking-[0.3em]">Stable</span>
+                  </td>
+                  <td class="px-6 py-5 text-muted">Optimisation CTA (05h10)</td>
+                  <td class="px-6 py-5 text-muted">Louis</td>
+                  <td class="px-6 py-5 text-right">
+                    <button class="text-primary font-semibold underline-offset-4 hover:underline">Ouvrir</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-5">
+                    <p class="font-semibold">Les Échos · Brief Eco</p>
+                    <p class="text-muted text-xs">Campagne du matin</p>
+                  </td>
+                  <td class="px-6 py-5">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs uppercase tracking-[0.3em]">À surveiller</span>
+                  </td>
+                  <td class="px-6 py-5 text-muted">Délivrabilité monitorée (04h32)</td>
+                  <td class="px-6 py-5 text-muted">Camille</td>
+                  <td class="px-6 py-5 text-right">
+                    <button class="text-primary font-semibold underline-offset-4 hover:underline">Détails</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-5">
+                    <p class="font-semibold">BFMTV · Flash info</p>
+                    <p class="text-muted text-xs">Alerting breaking news</p>
+                  </td>
+                  <td class="px-6 py-5">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs uppercase tracking-[0.3em]">Incident</span>
+                  </td>
+                  <td class="px-6 py-5 text-muted">IP Warm-02 bloquée (06h42)</td>
+                  <td class="px-6 py-5 text-muted">Julien</td>
+                  <td class="px-6 py-5 text-right">
+                    <button class="text-primary font-semibold underline-offset-4 hover:underline">Plan d'action</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-5">
+                    <p class="font-semibold">Culture+ · Curations soir</p>
+                    <p class="text-muted text-xs">Template premium + audio</p>
+                  </td>
+                  <td class="px-6 py-5">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs uppercase tracking-[0.3em]">En prod</span>
+                  </td>
+                  <td class="px-6 py-5 text-muted">CTA mis à jour (05h55)</td>
+                  <td class="px-6 py-5 text-muted">Anaïs</td>
+                  <td class="px-6 py-5 text-right">
+                    <button class="text-primary font-semibold underline-offset-4 hover:underline">Historique</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Team & Notes -->
+        <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-muted">Équipe</p>
+            <h4 class="text-lg font-semibold">Camille · Owner</h4>
+            <p class="text-sm text-muted">Rédaction en chef · arbitrage quotidien.</p>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-muted">CRM</p>
+            <h4 class="text-lg font-semibold">Louis · Growth</h4>
+            <p class="text-sm text-muted">Monitoring délivrabilité + VIP.</p>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-muted">Design</p>
+            <h4 class="text-lg font-semibold">Anaïs · Template</h4>
+            <p class="text-sm text-muted">Garde-fous monochromes.</p>
+          </article>
+          <article class="bg-card border border-border rounded-3xl p-6 space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-muted">Data</p>
+            <h4 class="text-lg font-semibold">Julien · IA</h4>
+            <p class="text-sm text-muted">Score attention & insights.</p>
+          </article>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-2">
+          <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-4">
+            <p class="text-xs uppercase tracking-[0.4em] text-muted">Notes & insights</p>
+            <div class="space-y-4 text-sm text-primary">
+              <div class="border border-border rounded-2xl p-4">
+                <p class="font-semibold mb-1">Test CTA premium · 27 déc.</p>
+                <p class="text-muted">Version monochrome + typo condensée : +14% conversions segment business.</p>
+              </div>
+              <div class="border border-border rounded-2xl p-4">
+                <p class="font-semibold mb-1">Suggestion éditoriale</p>
+                <p class="text-muted">Ajouter un module « Vu sur Figaro Live » après la section marchés.</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-4">
+            <p class="text-xs uppercase tracking-[0.4em] text-muted">Playbook monochrome</p>
+            <ul class="space-y-3 text-sm text-muted">
+              <li class="flex gap-3"><span class="text-primary">—</span><span>Palette limitée : noir, blanc, gris #E2E2E2.</span></li>
+              <li class="flex gap-3"><span class="text-primary">—</span><span>Grilles 12 colonnes, cartes 28-32px radius.</span></li>
+              <li class="flex gap-3"><span class="text-primary">—</span><span>Capitales espacées pour les légendes.</span></li>
+              <li class="flex gap-3"><span class="text-primary">—</span><span>CTA inversé seulement pour actions critiques.</span></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

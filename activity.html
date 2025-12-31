@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsletterPro - Journal d'activité</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#141416',
+            background: '#F4F4F6',
+            card: '#FFFFFF',
+            muted: '#777E90',
+            border: '#E2E2E2'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-primary min-h-screen">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-card min-h-screen p-6 flex flex-col fixed left-0 top-0 bottom-0 hidden md:flex border-r border-border">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold text-primary">NewsletterPro</span>
+      </div>
+
+      <!-- Navigation (identique à index.html) -->
+      <nav class="flex-1 space-y-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          </svg>
+          Campaigns
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition justify-between">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+            </svg>
+            Subscribers
+          </div>
+          <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-full font-medium">2.4K</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Templates
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Analytics
+        </a>
+      </nav>
+
+      <!-- Bottom Links -->
+      <div class="space-y-1 pt-6 border-t border-border">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Documentation
+        </a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-muted hover:text-primary hover:bg-background transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Settings
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8">
+      <!-- Mobile Header -->
+      <div class="md:hidden flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">NewsletterPro</span>
+        </div>
+        <button class="p-2 text-muted hover:text-primary">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Header -->
+        <section class="bg-card border border-border rounded-3xl p-6 shadow-sm">
+          <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6">
+            <div class="space-y-3">
+              <p class="text-xs uppercase tracking-[0.35em] text-muted">Activity monitor</p>
+              <h1 class="text-3xl md:text-4xl font-semibold text-primary leading-tight">Journal en direct de vos newsletters</h1>
+              <p class="text-muted max-w-2xl text-sm md:text-base">
+                Vue consolidée des derniers envois, incidents et actions correctives. Les données sont rafraîchies chaque minute pour offrir une lecture monochrome claire et neutre.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button class="px-4 py-2 rounded-xl border border-border text-sm font-semibold text-muted hover:text-primary hover:border-primary transition">
+                Exporter le journal
+              </button>
+              <button class="px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">
+                Ajouter une note
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-8">
+            <article class="rounded-2xl bg-[#111113] text-white p-5">
+              <p class="text-xs uppercase tracking-widest text-white/60">Activités suivies</p>
+              <p class="text-3xl font-semibold mt-2">128</p>
+              <p class="text-white/60 text-sm mt-1">depuis minuit</p>
+            </article>
+            <article class="rounded-2xl border border-border p-5">
+              <p class="text-xs uppercase tracking-widest text-muted">Alertes ouvertes</p>
+              <p class="text-3xl font-semibold mt-2">07</p>
+              <p class="text-muted text-sm mt-1">dont 2 critiques</p>
+            </article>
+            <article class="rounded-2xl border border-border p-5">
+              <p class="text-xs uppercase tracking-widest text-muted">Temps moyen</p>
+              <p class="text-3xl font-semibold mt-2">52 min</p>
+              <p class="text-muted text-sm mt-1">pour résoudre un incident</p>
+            </article>
+            <article class="rounded-2xl border border-border p-5">
+              <p class="text-xs uppercase tracking-widest text-muted">Dernier rafraîchissement</p>
+              <p class="text-3xl font-semibold mt-2" id="syncTime">--:--</p>
+              <p class="text-muted text-sm mt-1">mis à jour automatiquement</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Main Grid -->
+        <section class="grid gap-6 xl:grid-cols-[3fr,2fr]">
+          <!-- Timeline -->
+          <div class="bg-card border border-border rounded-3xl p-6 shadow-sm">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+              <div>
+                <p class="text-xs uppercase tracking-[0.4em] text-muted">Dernières 12 h</p>
+                <h2 class="text-2xl font-semibold text-primary mt-2">Timeline en continu</h2>
+              </div>
+              <div class="flex flex-wrap gap-2 text-sm">
+                <button class="filter-btn px-4 py-2 rounded-xl bg-primary text-white" data-filter="all">Tout</button>
+                <button class="filter-btn px-4 py-2 rounded-xl border border-border text-muted hover:text-primary" data-filter="alert">Alertes</button>
+                <button class="filter-btn px-4 py-2 rounded-xl border border-border text-muted hover:text-primary" data-filter="workflow">Automations</button>
+                <button class="filter-btn px-4 py-2 rounded-xl border border-border text-muted hover:text-primary" data-filter="content">Contenu</button>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <article class="flex gap-5 activity-row" data-category="alert">
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 rounded-full bg-[#111113] text-white flex flex-col items-center justify-center text-xs font-semibold">
+                    06h
+                    <span class="text-[10px] font-normal">38</span>
+                  </div>
+                  <span class="flex-1 w-px bg-border mt-2"></span>
+                </div>
+                <div class="flex-1 border border-border rounded-2xl p-5">
+                  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.35em] text-muted mb-1">Alerte critique · BFMTV</p>
+                      <h3 class="text-lg font-semibold text-primary">Rebond supérieur à 4,2% sur l’IP Warm-02</h3>
+                    </div>
+                    <span class="px-3 py-1 rounded-full border border-border text-xs text-primary">Assigné à Louis</span>
+                  </div>
+                  <p class="text-muted text-sm mt-3">Switch recommandé vers Warm-03 + purge automatique des segments inactifs. Impact estimé : 12K destinataires.</p>
+                </div>
+              </article>
+
+              <article class="flex gap-5 activity-row" data-category="workflow">
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 rounded-full border border-border flex flex-col items-center justify-center text-xs font-semibold">
+                    05h
+                    <span class="text-[10px] font-normal">10</span>
+                  </div>
+                  <span class="flex-1 w-px bg-border mt-2"></span>
+                </div>
+                <div class="flex-1 border border-border rounded-2xl p-5 bg-background/60">
+                  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.35em] text-muted mb-1">Automation · Le Figaro</p>
+                      <h3 class="text-lg font-semibold text-primary">Variante CTA B prend la tête (+5,8 pts)</h3>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-card border border-border text-xs">Optimisation auto</span>
+                  </div>
+                  <div class="grid sm:grid-cols-3 gap-3 mt-3 text-sm">
+                    <div class="rounded-xl border border-border p-3">
+                      <p class="text-muted text-xs">Ouverture</p>
+                      <p class="font-semibold text-primary">34,6%</p>
+                    </div>
+                    <div class="rounded-xl border border-border p-3">
+                      <p class="text-muted text-xs">Clic</p>
+                      <p class="font-semibold text-primary">9,1%</p>
+                    </div>
+                    <div class="rounded-xl border border-border p-3">
+                      <p class="text-muted text-xs">Upsell</p>
+                      <p class="font-semibold text-primary">+72 comptes</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="flex gap-5 activity-row" data-category="content">
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 rounded-full border border-dashed border-border flex flex-col items-center justify-center text-xs font-semibold">
+                    04h
+                    <span class="text-[10px] font-normal">55</span>
+                  </div>
+                  <span class="flex-1 w-px bg-border mt-2"></span>
+                </div>
+                <div class="flex-1 border border-border rounded-2xl p-5">
+                  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.35em] text-muted mb-1">Campagne · Les Échos</p>
+                      <h3 class="text-lg font-semibold text-primary">Edition Brief Eco envoyée (217 320 contacts)</h3>
+                    </div>
+                    <div class="text-right text-sm text-muted">
+                      <p>Envoi terminé</p>
+                      <p class="text-primary font-semibold">3 min 08</p>
+                    </div>
+                  </div>
+                  <p class="text-muted text-sm mt-3">Version monochrome orientée mobile. Module éditorial audio ajouté + rappel offre premium.</p>
+                  <div class="flex flex-wrap gap-2 mt-4 text-xs">
+                    <span class="px-3 py-1 rounded-full border border-border text-muted">Préparé par Camille</span>
+                    <span class="px-3 py-1 rounded-full border border-border text-muted">Validation CRM OK</span>
+                    <span class="px-3 py-1 rounded-full border border-border text-muted">SLA 98%</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="flex gap-5 activity-row" data-category="content">
+                <div class="flex flex-col items-center">
+                  <div class="w-12 h-12 rounded-full border border-border flex flex-col items-center justify-center text-xs font-semibold">
+                    03h
+                    <span class="text-[10px] font-normal">05</span>
+                  </div>
+                </div>
+                <div class="flex-1 border border-dashed border-border rounded-2xl p-5 bg-background/70">
+                  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.35em] text-muted mb-1">À planifier</p>
+                      <h3 class="text-lg font-semibold text-primary">Sprint “Rentrée abonnés” · Studio templates</h3>
+                    </div>
+                    <button class="px-3 py-1 rounded-full border border-border text-xs text-primary hover:bg-card transition">
+                      Ajouter un jalon
+                    </button>
+                  </div>
+                  <p class="text-muted text-sm mt-3">3 briefs prêts, 2 en revue design. Livraison prévue lundi 8 janvier.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Side column -->
+          <div class="space-y-6">
+            <section class="bg-card border border-border rounded-3xl p-6 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.4em] text-muted">Alertes</p>
+                  <h3 class="text-xl font-semibold text-primary mt-1">À traiter</h3>
+                </div>
+                <button class="text-sm text-muted hover:text-primary">Tout afficher</button>
+              </div>
+              <div class="space-y-3">
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">Blocage IP Warm-02</p>
+                    <span class="text-muted">12 min</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">Segments “Actu Flash” & “Breaking”.</p>
+                  <div class="flex items-center justify-between text-xs mt-3">
+                    <span class="text-muted">Assigné à Louis</span>
+                    <button class="text-primary font-semibold">Contourner</button>
+                  </div>
+                </div>
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">CTA expiré Culture+</p>
+                    <span class="text-muted">27 min</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">Lien billetterie obsolète.</p>
+                  <div class="flex items-center justify-between text-xs mt-3">
+                    <span class="text-muted">Assigné à Anaïs</span>
+                    <button class="text-primary font-semibold">Mettre à jour</button>
+                  </div>
+                </div>
+                <div class="p-4 border border-border rounded-2xl">
+                  <div class="flex items-center justify-between text-sm">
+                    <p class="font-semibold text-primary">Segment VIP inactif</p>
+                    <span class="text-muted">1 h</span>
+                  </div>
+                  <p class="text-muted text-xs mt-2">60% n’ont pas reçu le nurturing.</p>
+                  <div class="flex items-center justify-between text-xs mt-3">
+                    <span class="text-muted">Assigné à Camille</span>
+                    <button class="text-primary font-semibold">Relancer</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="bg-card border border-border rounded-3xl p-6 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold text-primary">Équipe connectée</h3>
+                <span class="text-xs px-3 py-1 rounded-full border border-border text-muted">6 personnes</span>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">CB</div>
+                    <div>
+                      <p class="font-semibold text-sm">Camille Bernard</p>
+                      <p class="text-muted text-xs">Owner · Figaro</p>
+                    </div>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-[#111113] text-white text-xs">En ligne</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">LM</div>
+                    <div>
+                      <p class="font-semibold text-sm">Louis Ménard</p>
+                      <p class="text-muted text-xs">Growth & CRM</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">Focus mode</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">AD</div>
+                    <div>
+                      <p class="font-semibold text-sm">Anaïs Dupont</p>
+                      <p class="text-muted text-xs">Design & Template</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">Mobile</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center font-semibold">JL</div>
+                    <div>
+                      <p class="font-semibold text-sm">Julien Lang</p>
+                      <p class="text-muted text-xs">Data & IA</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-muted">On call</span>
+                </div>
+              </div>
+              <button class="w-full mt-5 px-4 py-2 rounded-xl border border-dashed border-border text-sm font-semibold text-muted hover:text-primary hover:border-primary transition">
+                Planifier un relais
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <!-- Table -->
+        <section class="bg-card border border-border rounded-3xl p-6 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div>
+              <p class="text-xs uppercase tracking-[0.35em] text-muted">Monitoring</p>
+              <h2 class="text-2xl font-semibold text-primary mt-2">Flux par newsletter</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-4 py-2 rounded-xl border border-border text-sm text-muted hover:text-primary hover:border-primary transition">Télécharger CSV</button>
+              <button class="px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition">Synchroniser CRM</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead>
+                <tr class="text-muted border-b border-border">
+                  <th class="text-left py-3 font-medium">Newsletter</th>
+                  <th class="text-left py-3 font-medium">Statut</th>
+                  <th class="text-left py-3 font-medium">Dernière action</th>
+                  <th class="text-left py-3 font-medium">Responsable</th>
+                  <th class="text-right py-3 font-medium">Suivi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4">
+                    <p class="font-semibold text-primary">Le Figaro · Briefing matin</p>
+                    <p class="text-muted text-xs">Automation + test CTA</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Stable</span>
+                  </td>
+                  <td class="py-4 text-muted">Optimisation CTA (05h10)</td>
+                  <td class="py-4 text-muted">Louis</td>
+                  <td class="py-4 text-right">
+                    <button class="text-primary font-semibold">Dossier</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <p class="font-semibold text-primary">Les Échos · Brief Eco</p>
+                    <p class="text-muted text-xs">Campagne du matin</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">À surveiller</span>
+                  </td>
+                  <td class="py-4 text-muted">Monitoring délivrabilité (04h32)</td>
+                  <td class="py-4 text-muted">Camille</td>
+                  <td class="py-4 text-right">
+                    <button class="text-primary font-semibold">Rapport</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <p class="font-semibold text-primary">BFMTV · Flash info</p>
+                    <p class="text-muted text-xs">Alerting breaking news</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">Incident</span>
+                  </td>
+                  <td class="py-4 text-muted">IP Warm-02 bloquée (06h42)</td>
+                  <td class="py-4 text-muted">Julien</td>
+                  <td class="py-4 text-right">
+                    <button class="text-primary font-semibold">Plan d’action</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-4">
+                    <p class="font-semibold text-primary">Culture+ · Curations soir</p>
+                    <p class="text-muted text-xs">Template audio premium</p>
+                  </td>
+                  <td class="py-4">
+                    <span class="px-3 py-1 rounded-full border border-border text-xs">En prod</span>
+                  </td>
+                  <td class="py-4 text-muted">CTA mis à jour (05h55)</td>
+                  <td class="py-4 text-muted">Anaïs</td>
+                  <td class="py-4 text-right">
+                    <button class="text-primary font-semibold">Historique</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const syncTime = document.getElementById('syncTime');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const rows = document.querySelectorAll('.activity-row');
+
+      function refreshClock() {
+        const now = new Date();
+        syncTime.textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      }
+
+      function filterTimeline(type) {
+        rows.forEach(row => {
+          const category = row.getAttribute('data-category');
+          const matches = type === 'all' || category === type;
+          row.style.display = matches ? 'flex' : 'none';
+        });
+      }
+
+      function toggleButtons(activeButton) {
+        filterButtons.forEach(button => {
+          if (button === activeButton) {
+            button.classList.add('bg-primary', 'text-white');
+            button.classList.remove('border', 'text-muted');
+          } else {
+            button.classList.remove('bg-primary', 'text-white');
+            button.classList.add('border', 'border-border', 'text-muted');
+          }
+        });
+      }
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const type = button.getAttribute('data-filter');
+          filterTimeline(type);
+          toggleButtons(button);
+        });
+      });
+
+      refreshClock();
+      setInterval(refreshClock, 60 * 1000);
+    });
+  </script>
+</body>
+</html>
+
