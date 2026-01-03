@@ -1,0 +1,298 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Michael Alves",
+      "email": "admin@newsletterpro.com",
+      "password": "$2b$10$kNtPh3g0.t4T.rGmMCxaA.taxsaTFF09JrvNI7sRw3ohvqktJknB.",
+      "role": "admin",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "phone": "0610936557",
+      "street": "40 rue du colisée",
+      "apt": "",
+      "city": "Paris",
+      "state": "",
+      "updatedAt": "2025-12-31T20:23:36.358Z"
+    },
+    {
+      "id": 2,
+      "name": "Jean Dupont",
+      "email": "jean@example.com",
+      "password": "$2b$10$cOnLCDWbcZ5onsnDEpUmjOGwwGignSRB0c65/x86wtVYmHTVRpgSK",
+      "role": "user",
+      "createdAt": "2025-12-31T18:35:41.985Z"
+    },
+    {
+      "id": 3,
+      "name": "Martin Comar",
+      "email": "mcomar@welcoming.com",
+      "password": "$2b$10$EZ7npiopzwfO87lNi7DIk.Q6AhVdEF187Y42sc56775vbVAdMROpe",
+      "role": "admin",
+      "createdAt": "2025-12-31T23:59:12.479Z"
+    }
+  ],
+  "newsletters": [
+    {
+      "id": 1,
+      "name": "Le Figaro",
+      "description": "Sélection business & politique publique, format synthétique + modules audio. Palette claire et monochrome, hiérarchie en capitales et blocs parfaitement alignés.",
+      "subscribers": 2400,
+      "openRate": 24.8,
+      "status": "active",
+      "createdBy": 1,
+      "createdAt": "2024-01-15T08:00:00.000Z",
+      "updatedAt": "2024-01-15T08:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "20 Minutes",
+      "description": "Actualités quotidiennes",
+      "subscribers": 1800,
+      "openRate": 31.2,
+      "status": "active",
+      "createdBy": 1,
+      "createdAt": "2024-01-15T08:00:00.000Z",
+      "updatedAt": "2024-01-15T08:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Ouest France",
+      "description": "Radio & web",
+      "subscribers": 956,
+      "openRate": 19.4,
+      "status": "active",
+      "createdBy": 1,
+      "createdAt": "2024-01-15T08:00:00.000Z",
+      "updatedAt": "2024-01-15T08:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Super NL",
+      "description": "C'est une newsletter test pour impressionner Martin.",
+      "status": "active",
+      "createdBy": 1,
+      "subscribers": "0",
+      "openRate": "0",
+      "createdAt": "2025-12-31T20:08:23.232Z",
+      "updatedAt": "2026-01-01T00:03:01.459Z"
+    }
+  ],
+  "subscribers": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "name": "User Example",
+      "subscribedNewsletters": [
+        1,
+        2
+      ],
+      "status": "active",
+      "createdAt": "2024-01-10T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "contact@test.com",
+      "name": "Contact Test",
+      "subscribedNewsletters": [
+        1
+      ],
+      "status": "active",
+      "createdAt": "2024-01-12T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Martin Comar",
+      "email": "mcomar@gmail.com",
+      "newsletters": [
+        "1",
+        "2"
+      ],
+      "subscribedNewsletters": [
+        1,
+        2
+      ],
+      "status": "active",
+      "createdAt": "2026-01-01T00:03:39.320Z"
+    },
+    {
+      "id": 5,
+      "name": "Toto",
+      "email": "toto@gmail.com",
+      "newsletters": [
+        "1",
+        "2"
+      ],
+      "subscribedNewsletters": [
+        1,
+        2
+      ],
+      "status": "active",
+      "createdAt": "2026-01-02T09:05:49.005Z"
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "type": "email_sent",
+      "userId": 1,
+      "newsletterId": 1,
+      "details": "2400 emails envoyés",
+      "timestamp": "2024-01-15T08:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "type": "newsletter_created",
+      "userId": 1,
+      "newsletterId": 2,
+      "details": "Newsletter '20 Minutes' créée",
+      "timestamp": "2024-01-15T09:00:00.000Z"
+    }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "invoiceNumber": "INV-2024-001",
+      "userId": 1,
+      "amount": 149,
+      "currency": "EUR",
+      "status": "paid",
+      "description": "Abonnement Pro - Janvier 2024",
+      "items": [
+        {
+          "name": "Plan Pro",
+          "quantity": 1,
+          "unitPrice": 99,
+          "total": 99
+        },
+        {
+          "name": "Emails envoyés (5 000)",
+          "quantity": 5000,
+          "unitPrice": 0.01,
+          "total": 50
+        }
+      ],
+      "subtotal": 149,
+      "tax": 29.8,
+      "total": 178.8,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "dueDate": "2024-01-15T00:00:00.000Z",
+      "paidAt": "2024-01-05T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "invoiceNumber": "INV-2024-002",
+      "userId": 1,
+      "amount": 199,
+      "currency": "EUR",
+      "status": "paid",
+      "description": "Abonnement Pro - Février 2024",
+      "items": [
+        {
+          "name": "Plan Pro",
+          "quantity": 1,
+          "unitPrice": 99,
+          "total": 99
+        },
+        {
+          "name": "Emails envoyés (10 000)",
+          "quantity": 10000,
+          "unitPrice": 0.01,
+          "total": 100
+        }
+      ],
+      "subtotal": 199,
+      "tax": 39.8,
+      "total": 238.8,
+      "createdAt": "2024-02-01T00:00:00.000Z",
+      "dueDate": "2024-02-15T00:00:00.000Z",
+      "paidAt": "2024-02-03T14:20:00.000Z"
+    },
+    {
+      "id": 3,
+      "invoiceNumber": "INV-2024-003",
+      "userId": 1,
+      "amount": 249,
+      "currency": "EUR",
+      "status": "pending",
+      "description": "Abonnement Pro - Mars 2024",
+      "items": [
+        {
+          "name": "Plan Pro",
+          "quantity": 1,
+          "unitPrice": 99,
+          "total": 99
+        },
+        {
+          "name": "Emails envoyés (15 000)",
+          "quantity": 15000,
+          "unitPrice": 0.01,
+          "total": 150
+        }
+      ],
+      "subtotal": 249,
+      "tax": 49.8,
+      "total": 298.8,
+      "createdAt": "2024-03-01T00:00:00.000Z",
+      "dueDate": "2024-03-15T00:00:00.000Z",
+      "paidAt": null
+    },
+    {
+      "id": 4,
+      "invoiceNumber": "INV-2025-001",
+      "userId": 1,
+      "amount": 149,
+      "currency": "EUR",
+      "status": "overdue",
+      "description": "Abonnement Pro - Décembre 2025",
+      "items": [
+        {
+          "name": "Plan Pro",
+          "quantity": 1,
+          "unitPrice": 99,
+          "total": 99
+        },
+        {
+          "name": "Emails envoyés (5 000)",
+          "quantity": 5000,
+          "unitPrice": 0.01,
+          "total": 50
+        }
+      ],
+      "subtotal": 149,
+      "tax": 29.8,
+      "total": 178.8,
+      "createdAt": "2025-12-01T00:00:00.000Z",
+      "dueDate": "2025-12-15T00:00:00.000Z",
+      "paidAt": null
+    },
+    {
+      "id": 5,
+      "invoiceNumber": "INV-2026-001",
+      "userId": 1,
+      "amount": 299,
+      "currency": "EUR",
+      "status": "upcoming",
+      "description": "Abonnement Pro - Janvier 2026",
+      "items": [
+        {
+          "name": "Plan Pro",
+          "quantity": 1,
+          "unitPrice": 99,
+          "total": 99
+        },
+        {
+          "name": "Emails envoyés (20 000)",
+          "quantity": 20000,
+          "unitPrice": 0.01,
+          "total": 200
+        }
+      ],
+      "subtotal": 299,
+      "tax": 59.8,
+      "total": 358.8,
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "dueDate": "2026-01-15T00:00:00.000Z",
+      "paidAt": null
+    }
+  ]
+}

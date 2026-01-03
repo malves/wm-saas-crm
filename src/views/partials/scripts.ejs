@@ -1,0 +1,108 @@
+<script src="/js/notifications.js"></script>
+
+<script>
+  // Dropdown menu pour les actions
+  (function() {
+    const menuTimeouts = new WeakMap();
+
+    function hideMenu(menu) {
+      if (!menu) return;
+      menu.style.display = 'none';
+      if (menuTimeouts.has(menu)) {
+        clearTimeout(menuTimeouts.get(menu));
+        menuTimeouts.delete(menu);
+      }
+    }
+
+    function showMenu(menu) {
+      if (!menu) return;
+      menu.style.display = 'block';
+    }
+
+    function scheduleHide(menu) {
+      if (!menu) return;
+      if (menuTimeouts.has(menu)) {
+        clearTimeout(menuTimeouts.get(menu));
+      }
+      const timeoutId = setTimeout(() => hideMenu(menu), 600);
+      menuTimeouts.set(menu, timeoutId);
+    }
+
+    function cancelScheduledHide(menu) {
+      if (!menu) return;
+      if (menuTimeouts.has(menu)) {
+        clearTimeout(menuTimeouts.get(menu));
+        menuTimeouts.delete(menu);
+      }
+    }
+
+    // Exposer la fonction toggle globalement
+    window.toggleActionMenu = function(button, event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      const menu = button.nextElementSibling;
+      if (!menu) return;
+
+      // Fermer tous les autres menus
+      document.querySelectorAll('.action-menu').forEach(otherMenu => {
+        if (otherMenu !== menu) {
+          hideMenu(otherMenu);
+        }
+      });
+
+      // Toggle ce menu
+      if (menu.style.display === 'block') {
+        hideMenu(menu);
+      } else {
+        showMenu(menu);
+        cancelScheduledHide(menu);
+      }
+    };
+
+    // Fermer quand on clique ailleurs
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.action-menu').forEach(menu => hideMenu(menu));
+    });
+
+    // Ajouter les événements de survol quand le DOM est prêt
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMenuHoverEvents);
+    } else {
+      initMenuHoverEvents();
+    }
+
+    function initMenuHoverEvents() {
+      document.querySelectorAll('.action-menu').forEach(menu => {
+        menu.addEventListener('mouseenter', () => cancelScheduledHide(menu));
+        menu.addEventListener('mouseleave', () => scheduleHide(menu));
+      });
+    }
+  })();
+</script>
+
+<script>
+  // Menu utilisateur (profil / logout)
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('user-menu-toggle');
+    const panel = document.getElementById('user-menu-panel');
+
+    if (toggle && panel) {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        panel.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+          panel.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Chart.js pour les graphiques de newsletter -->
+<script src="/js/chart.umd.min.js"></script>
+<script src="/js/newsletter-chart.js"></script>
+

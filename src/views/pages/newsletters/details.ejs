@@ -1,0 +1,461 @@
+<%
+  const statusLabels = {
+    active: 'Active',
+    draft: 'Brouillon',
+    paused: 'En pause',
+    archived: 'Archivée'
+  };
+  const statusLabel = statusLabels[newsletter.status] || (newsletter.status || 'Indéterminé');
+  const formatNumber = (value) => {
+    const num = Number(value);
+    if (Number.isNaN(num)) return value || 0;
+    return num.toLocaleString('fr-FR');
+  };
+  const subscribers = Number(newsletter.subscribers) || 0;
+  const openRate = Number(newsletter.openRate) || 0;
+  const clickRate = Number((openRate * 0.27).toFixed(1));
+  const subscriberGrowth = Math.max(1, Math.round(subscribers * 0.018));
+  const healthScore = (openRate ? Math.min(10, (openRate / 8) + 6.3) : 8.2).toFixed(1);
+  const clickWidthStyle = `style="width:${Math.min(100, openRate * 2)}%;"`;
+  
+  // Données 15 jours
+  const performanceLabels15 = ['Sam', 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+  const performanceVolumes15 = [860, 1020, 1380, 2450, 980, 1560, 2450];
+  const lineAdjustments15 = [-1.4, -0.3, 0.7, 1.8, -0.6, 0.9, 1.4];
+  
+  // Données 7 jours (sous-ensemble avec variations)
+  const performanceLabels7 = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+  const performanceVolumes7 = [1200, 2100, 890, 1450, 2300, 1650, 980];
+  const lineAdjustments7 = [0.5, 1.6, -0.8, 0.7, 1.3, 0.2, -0.5];
+  
+  const lineBaseline = openRate || 32;
+  const performanceLine15 = lineAdjustments15.map(adj => Math.max(0, Number((lineBaseline + adj).toFixed(1))));
+  const performanceLine7 = lineAdjustments7.map(adj => Math.max(0, Number((lineBaseline + adj).toFixed(1))));
+  
+  const peakVolume15 = Math.max(...performanceVolumes15);
+  const peakVolumeDay15 = performanceLabels15[performanceVolumes15.indexOf(peakVolume15)];
+  const bestLine15 = Math.max(...performanceLine15);
+  const bestLineDay15 = performanceLabels15[performanceLine15.indexOf(bestLine15)];
+  const avgLine15 = (performanceLine15.reduce((acc, value) => acc + value, 0) / performanceLine15.length).toFixed(1);
+  
+  const peakVolume7 = Math.max(...performanceVolumes7);
+  const peakVolumeDay7 = performanceLabels7[performanceVolumes7.indexOf(peakVolume7)];
+  const bestLine7 = Math.max(...performanceLine7);
+  const bestLineDay7 = performanceLabels7[performanceLine7.indexOf(bestLine7)];
+  const avgLine7 = (performanceLine7.reduce((acc, value) => acc + value, 0) / performanceLine7.length).toFixed(1);
+  
+  const performanceChartData = {
+    period7: {
+      labels: performanceLabels7,
+      bars: performanceVolumes7,
+      line: performanceLine7,
+      peakVolume: peakVolume7,
+      peakVolumeDay: peakVolumeDay7,
+      bestLine: bestLine7,
+      bestLineDay: bestLineDay7,
+      avgLine: avgLine7
+    },
+    period15: {
+      labels: performanceLabels15,
+      bars: performanceVolumes15,
+      line: performanceLine15,
+      peakVolume: peakVolume15,
+      peakVolumeDay: peakVolumeDay15,
+      bestLine: bestLine15,
+      bestLineDay: bestLineDay15,
+      avgLine: avgLine15
+    }
+  };
+  const createdAt = newsletter.createdAt ? new Date(newsletter.createdAt).toLocaleDateString('fr-FR') : '—';
+  const updatedAt = newsletter.updatedAt ? new Date(newsletter.updatedAt).toLocaleDateString('fr-FR') : '—';
+  const timelineBlocks = [
+    { time: '06h12', title: 'Hero macro + billet radio', desc: 'Image noir et blanc, CTA inversé.', completion: '74%' },
+    { time: '06h18', title: 'Marchés & data', desc: 'Graphiques greyscale · CAC / Nasdaq.', completion: '31%' },
+    { time: '06h25', title: 'Culture & agenda', desc: 'Double colonne magazine + push audio.', completion: '19%' }
+  ];
+  const audienceSegments = [
+    { label: 'Cadres supérieurs', detail: 'Finance · Droit · Conseil', share: '42%' },
+    { label: 'Décideurs publics', detail: 'Ministères · Collectivités', share: '27%' },
+    { label: 'Passionnés actu', detail: 'Abonnement numérique', share: '19%' },
+    { label: 'Premium culture', detail: 'Arts · Lifestyle', share: '12%' }
+  ];
+  const operations = [
+    { name: 'Le Figaro · Briefing matin', info: 'Séquence automation + A/B test', status: 'Stable', action: 'Optimisation CTA (05h10)', owner: 'Louis', cta: 'Ouvrir' },
+    { name: 'Les Échos · Brief Eco', info: 'Campagne du matin', status: 'À surveiller', action: 'Délivrabilité monitorée (04h32)', owner: 'Camille', cta: 'Détails' },
+    { name: 'BFMTV · Flash info', info: 'Alerting breaking news', status: 'Incident', action: 'IP Warm-02 bloquée (06h42)', owner: 'Julien', cta: "Plan d'action" },
+    { name: 'Culture+ · Curations soir', info: 'Template premium + audio', status: 'En prod', action: 'CTA mis à jour (05h55)', owner: 'Anaïs', cta: 'Historique' }
+  ];
+  const team = [
+    { label: 'Équipe', name: 'Camille · Owner', desc: 'Rédaction en chef · arbitrage quotidien.' },
+    { label: 'CRM', name: 'Louis · Growth', desc: 'Monitoring délivrabilité + VIP.' },
+    { label: 'Design', name: 'Anaïs · Template', desc: 'Garde-fous monochromes.' },
+    { label: 'Data', name: 'Julien · IA', desc: 'Score attention & insights.' }
+  ];
+%>
+
+<!-- Header -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+  <div>
+    <div class="flex items-center gap-2 text-sm text-muted mb-2">
+      <a href="/newsletters" class="hover:text-primary">Newsletters</a>
+      <span>/</span>
+      <span class="text-primary font-medium"><%= newsletter.name %></span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold"><%= newsletter.name %> – Détails</h1>
+    <p class="text-muted text-sm mt-2 max-w-2xl">
+      Vue complète des performances, segments et process automation de cette newsletter. Palette monochrome respectée.
+    </p>
+  </div>
+  <div class="flex flex-wrap items-center gap-3">
+    <button class="px-4 py-2 rounded-xl bg-primary text-white font-semibold hover:bg-primary/90 transition text-sm">
+      Programmer une édition
+    </button>
+    <div class="flex items-center gap-2">
+      <a href="/newsletters/<%= newsletter.id %>/edit" class="px-4 py-2 rounded-xl border border-border text-primary font-semibold hover:-translate-y-0.5 transition text-sm shadow-sm">
+        Modifier
+      </a>
+      <form method="POST" action="/newsletters/<%= newsletter.id %>/delete" onsubmit="return confirm('Voulez-vous vraiment supprimer cette newsletter ?')" class="inline">
+        <button type="submit" class="px-4 py-2 rounded-xl border border-danger text-danger hover:bg-danger hover:text-white transition text-sm font-semibold">
+          Supprimer
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="space-y-8">
+  <!-- Hero -->
+  <section class="relative rounded-3xl overflow-hidden bg-card text-primary p-8 md:p-12 border border-border">
+    <div class="grid gap-8 lg:grid-cols-[1.6fr,1fr]">
+      <div class="space-y-6">
+        <div class="flex items-center gap-4 text-xs uppercase tracking-[0.4em]">
+          <span class="text-muted">ÉDITION PREMIUM</span>
+          <span class="px-3 py-1 rounded-full border border-border text-primary bg-background"><%= statusLabel %></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-semibold"><%= newsletter.name %></h2>
+        <p class="text-muted max-w-2xl"><%= newsletter.description %></p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-background border border-border rounded-2xl p-4">
+            <p class="text-xs tracking-[0.3em] text-muted uppercase">Abonnés</p>
+            <p class="text-3xl font-semibold"><%= formatNumber(subscribers) %></p>
+            <p class="text-xs text-success mt-1">+<%= formatNumber(subscriberGrowth) %> cette semaine</p>
+          </div>
+          <div class="bg-background border border-border rounded-2xl p-4">
+            <p class="text-xs tracking-[0.3em] text-muted uppercase">Ouverture</p>
+            <p class="text-3xl font-semibold"><%= openRate %>%</p>
+            <p class="text-xs text-muted mt-1">+2,1 pts</p>
+          </div>
+          <div class="bg-background border border-border rounded-2xl p-4">
+            <p class="text-xs tracking-[0.3em] text-muted uppercase">Clic unique</p>
+            <p class="text-3xl font-semibold"><%= clickRate %>%</p>
+            <div class="mt-4 h-2 bg-border rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" <%- clickWidthStyle %>></div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-border">
+          <div class="flex items-center gap-2">
+            <p class="text-xs text-muted uppercase tracking-[0.3em]">Dernière mise à jour</p>
+            <p class="text-sm font-semibold"><%= updatedAt %></p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-background text-primary rounded-2xl p-6 space-y-5 border border-border">
+        <div>
+          <h3 class="text-xl font-semibold">Configuration de la newsletter</h3>
+        </div>
+        <div class="space-y-4 text-sm">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-success">DKIM</p>
+                <p class="text-muted text-xs">Clés de signature configurées</p>
+              </div>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-success">SPF</p>
+                <p class="text-muted text-xs">Serveurs autorisés définis</p>
+              </div>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-muted/20 flex items-center justify-center">
+                <svg class="w-4 h-4 text-muted" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-muted">DMARC</p>
+                <p class="text-muted text-xs">Politique anti-spoofing</p>
+              </div>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-muted/10 text-muted text-xs font-semibold">À configurer</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-success">Domaine custom</p>
+                <p class="text-muted text-xs">nl.<%= newsletter.name.toLowerCase().replace(/\s+/g, '') %>.com</p>
+              </div>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">Vérifié</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-warning/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div>
+                <p class="font-medium text-warning">Score IP</p>
+                <p class="text-muted text-xs">Réputation expéditeur</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg font-semibold text-warning">10</span>
+              <span class="text-muted text-sm">/20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Strip -->
+  <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+      <p class="text-xs uppercase tracking-[0.3em] text-muted">Newsletters envoyés</p>
+      <h3 class="text-3xl font-semibold"><%= Math.max(1, Math.round(subscribers * 0.006)) %></h3>
+      <p class="text-xs text-muted">12 dernières heures · +18%</p>
+      <div class="h-1.5 bg-background rounded-full overflow-hidden">
+        <div class="h-full bg-primary" style="width:72%"></div>
+      </div>
+    </article>
+    <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+      <p class="text-xs uppercase tracking-[0.3em] text-muted">Taux d'ouverture</p>
+      <h3 class="text-3xl font-semibold"><%= openRate %>%</h3>
+      <div class="space-y-3 text-sm">
+        <div>
+          <div class="flex justify-between text-muted text-xs"><span>7 derniers jours</span><span><%= (openRate + 1.8).toFixed(1) %>%</span></div>
+          <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-success" style="width:85%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-muted text-xs"><span>30 derniers jours</span><span><%= (openRate - 0.6).toFixed(1) %>%</span></div>
+          <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-primary" style="width:79%"></div></div>
+        </div>
+      </div>
+    </article>
+    <article class="bg-card border border-border rounded-3xl p-6 space-y-3">
+      <p class="text-xs uppercase tracking-[0.3em] text-muted">Taux de clic</p>
+      <h3 class="text-3xl font-semibold"><%= clickRate %>%</h3>
+      <div class="space-y-3 text-sm">
+        <div>
+          <div class="flex justify-between text-muted text-xs"><span>7 derniers jours</span><span><%= (clickRate + 0.5).toFixed(1) %>%</span></div>
+          <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-success" style="width:85%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-muted text-xs"><span>30 derniers jours</span><span><%= (clickRate - 0.2).toFixed(1) %>%</span></div>
+          <div class="h-1.5 bg-background rounded-full overflow-hidden mt-1"><div class="h-full bg-primary" style="width:79%"></div></div>
+        </div>
+      </div>
+    </article>
+    <article class="bg-card border border-border rounded-3xl p-6 flex flex-col text-center min-h-[140px]">
+      <p class="text-xs uppercase tracking-[0.3em] text-muted">Santé de la newsletter</p>
+      <div class="flex items-center justify-center space-x-2 flex-1">
+        <h3 class="text-5xl font-semibold text-primary"><%= healthScore %></h3>
+        <p class="text-5xl font-semibold text-primary">/ 10</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Performance Chart -->
+  <section class="bg-card border border-border rounded-[32px] p-6 md:p-8 space-y-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-[0.4em] text-muted">Performances</p>
+        <h3 class="text-2xl font-semibold">Statistiques récentes</h3>
+        <p class="text-muted text-sm mt-1">Évolution des indicateurs clés · clics et taux de conversion.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em]">
+        <button id="btn-7days" class="px-4 py-2 rounded-full border border-border text-muted hover:text-primary transition">7 jours</button>
+        <button id="btn-15days" class="px-4 py-2 rounded-full bg-primary text-white">15 jours</button>
+      </div>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-[4fr,1fr]">
+      <div class="bg-background rounded-[28px] border border-border p-5 relative">
+        <div class="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-muted mb-4">
+          <span>Money Flow</span>
+          <div class="flex items-center gap-2">
+            <span class="flex items-center gap-1" style="color: #334155;"><span class="inline-block w-2 h-2 rounded-full" style="background-color: #334155;"></span>Clics</span>
+            <span class="flex items-center gap-1" style="color: #0f172a;"><span class="inline-block w-2 h-2 rounded-full" style="background-color: #0f172a;"></span>Ouvertures</span>
+          </div>
+        </div>
+        <div style="height: 320px; position: relative;">
+          <canvas
+            id="newsletterPerformanceChart"
+            aria-label="Graphique des performances envoyés vs taux d'ouverture"
+            role="img"
+            data-chart='<%- JSON.stringify(performanceChartData) %>'
+            class="w-full h-full">
+          </canvas>
+        </div>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+        <article class="bg-background border border-border rounded-3xl p-5 space-y-2">
+          <p class="text-xs uppercase tracking-[0.35em] text-muted">Pic volume</p>
+          <h4 id="stat-peak-volume" class="text-3xl font-semibold"><%= formatNumber(performanceChartData.period15.peakVolume) %></h4>
+          <p class="text-xs text-muted">Jour : <span id="stat-peak-day" class="text-primary font-semibold uppercase tracking-[0.35em]"><%= performanceChartData.period15.peakVolumeDay %></span></p>
+        </article>
+        <article class="bg-background border border-border rounded-3xl p-5 space-y-2">
+          <p class="text-xs uppercase tracking-[0.35em] text-muted">Taux max</p>
+          <h4 id="stat-best-line" class="text-3xl font-semibold"><%= performanceChartData.period15.bestLine %>%</h4>
+          <p class="text-xs text-muted">Jour : <span id="stat-best-day" class="text-primary font-semibold uppercase tracking-[0.35em]"><%= performanceChartData.period15.bestLineDay %></span></p>
+        </article>
+        <article class="bg-background border border-border rounded-3xl p-5 space-y-2">
+          <p class="text-xs uppercase tracking-[0.35em] text-muted">Moyenne ligne</p>
+          <h4 id="stat-avg-line" class="text-3xl font-semibold"><%= performanceChartData.period15.avgLine %>%</h4>
+          <p class="text-xs text-muted">Variation clics : <span class="text-success font-semibold">+<%= (clickRate / (openRate || 1) * 100).toFixed(1) %>%</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline & Audience -->
+  <section class="grid gap-6 lg:grid-cols-[1.6fr,1fr]">
+    <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-muted">Édition du <%= createdAt %></p>
+          <h3 class="text-2xl font-semibold">Timeline des blocs</h3>
+        </div>
+        <div class="flex gap-2 text-xs uppercase tracking-[0.25em]">
+          <button class="px-4 py-2 rounded-full border border-border text-muted">Preview</button>
+          <button class="px-4 py-2 rounded-full bg-primary text-white">Rapport</button>
+        </div>
+      </div>
+      <div class="space-y-5">
+        <% timelineBlocks.forEach((block, index) => { %>
+          <div class="flex gap-5">
+            <div class="w-16 text-xs text-muted"><%= block.time %></div>
+            <div class="flex-1 <%= index < timelineBlocks.length - 1 ? 'border-b border-dashed border-border pb-4' : '' %>">
+              <p class="font-semibold"><%= block.title %></p>
+              <p class="text-sm text-muted mt-1"><%= block.desc %></p>
+            </div>
+            <span class="text-xs text-muted uppercase tracking-[0.3em]"><%= block.completion %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-6">
+      <div>
+        <p class="text-xs uppercase tracking-[0.4em] text-muted">Segments</p>
+        <h3 class="text-xl font-semibold">Audience prioritaire</h3>
+      </div>
+      <div class="space-y-4 text-sm">
+        <% audienceSegments.forEach((segment, index) => { %>
+          <div class="flex items-center justify-between <%= index < audienceSegments.length - 1 ? 'border-b border-border pb-3' : '' %>">
+            <div>
+              <p class="font-semibold"><%= segment.label %></p>
+              <p class="text-muted text-xs"><%= segment.detail %></p>
+            </div>
+            <span class="text-primary font-semibold"><%= segment.share %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operations Table -->
+  <section class="bg-card border border-border rounded-[32px] p-6 md:p-8 space-y-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-[0.4em] text-muted">Opérations</p>
+        <h3 class="text-2xl font-semibold">Synthèse par newsletter</h3>
+      </div>
+      <div class="flex gap-2 text-xs uppercase tracking-[0.25em]">
+        <button class="px-4 py-2 rounded-full border border-border text-muted">CSV</button>
+        <button class="px-4 py-2 rounded-full bg-primary text-white">Sync CRM</button>
+      </div>
+    </div>
+    <div class="overflow-x-auto rounded-3xl border border-border">
+      <table class="min-w-full text-sm">
+        <thead class="bg-background text-muted uppercase text-xs tracking-[0.35em]">
+          <tr>
+            <th class="px-6 py-4 text-left">Newsletter</th>
+            <th class="px-6 py-4 text-left">Statut</th>
+            <th class="px-6 py-4 text-left">Dernière action</th>
+            <th class="px-6 py-4 text-left">Owner</th>
+            <th class="px-6 py-4 text-right">Suivi</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <% operations.forEach(item => { %>
+            <tr>
+              <td class="px-6 py-5">
+                <p class="font-semibold"><%= item.name %></p>
+                <p class="text-muted text-xs"><%= item.info %></p>
+              </td>
+              <td class="px-6 py-5">
+                <span class="px-3 py-1 rounded-full border border-border text-xs uppercase tracking-[0.3em]"><%= item.status %></span>
+              </td>
+              <td class="px-6 py-5 text-muted"><%= item.action %></td>
+              <td class="px-6 py-5 text-muted"><%= item.owner %></td>
+              <td class="px-6 py-5 text-right">
+                <button class="text-primary font-semibold underline-offset-4 hover:underline"><%= item.cta %></button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <% team.forEach(member => { %>
+      <article class="bg-card border border-border rounded-3xl p-6 space-y-2">
+        <p class="text-xs uppercase tracking-[0.35em] text-muted"><%= member.label %></p>
+        <h4 class="text-lg font-semibold"><%= member.name %></h4>
+        <p class="text-sm text-muted"><%= member.desc %></p>
+      </article>
+    <% }) %>
+  </section>
+
+  <!-- Notes & Playbook -->
+  <section class="grid gap-6 lg:grid-cols-2">
+    <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-4">
+      <p class="text-xs uppercase tracking-[0.4em] text-muted">Notes & insights</p>
+      <div class="space-y-4 text-sm text-primary">
+        <div class="border border-border rounded-2xl p-4">
+          <p class="font-semibold mb-1">Test CTA premium · 27 déc.</p>
+          <p class="text-muted">Version monochrome + typo condensée : +14% conversions segment business.</p>
+        </div>
+        <div class="border border-border rounded-2xl p-4">
+          <p class="font-semibold mb-1">Suggestion éditoriale</p>
+          <p class="text-muted">Ajouter un module "Vu sur Figaro Live" après la section marchés.</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-card border border-border rounded-[28px] p-6 md:p-8 space-y-4">
+      <p class="text-xs uppercase tracking-[0.4em] text-muted">Playbook monochrome</p>
+      <ul class="space-y-3 text-sm text-muted">
+        <li class="flex gap-3"><span class="text-primary">—</span><span>Palette limitée : noir, blanc, gris #E2E2E2.</span></li>
+        <li class="flex gap-3"><span class="text-primary">—</span><span>Grilles 12 colonnes, cartes 28-32px radius.</span></li>
+        <li class="flex gap-3"><span class="text-primary">—</span><span>Capitales espacées pour les légendes.</span></li>
+        <li class="flex gap-3"><span class="text-primary">—</span><span>CTA inversé seulement pour actions critiques.</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
