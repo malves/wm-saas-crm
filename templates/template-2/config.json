@@ -1,0 +1,17 @@
+{
+  "blocks": [
+    {
+      "id": "block-1767409075128-45u6489vo",
+      "type": "text",
+      "config": {
+        "text": "Votre texte ici...",
+        "fontSize": 16,
+        "color": "#000000",
+        "align": "left",
+        "lineHeight": 1.5,
+        "fontWeight": "normal",
+        "padding": "16px"
+      }
+    }
+  ]
+}

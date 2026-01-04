@@ -1,0 +1,316 @@
+{
+  "blocks": [
+    {
+      "id": "block-1767538436751-x2zgsw1y8",
+      "type": "article",
+      "config": {
+        "image": {
+          "src": "https://placehold.co/1200x600/dbeafe/1e40af.png?text=Article&font=roboto",
+          "alt": "Image de l'article",
+          "width": "100%",
+          "borderRadius": "8px"
+        },
+        "title": {
+          "text": "Ici un Journaliste pourrait faire un édito quotidiennement.",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "color": "#000000",
+          "marginTop": "16px",
+          "marginBottom": "8px"
+        },
+        "description": {
+          "text": "C'est ma petite présentation rien qu'à moi.",
+          "fontSize": 20,
+          "fontWeight": "normal",
+          "color": "#000000",
+          "lineHeight": "1.6"
+        },
+        "link": {
+          "url": "#",
+          "target": "_blank"
+        },
+        "padding": "16px",
+        "backgroundColor": "transparent",
+        "borderWidth": "0px",
+        "borderColor": "#e5e7eb",
+        "borderStyle": "solid",
+        "borderRadius": "8px",
+        "rssField": null,
+        "id": "block-1767538436751-x2zgsw1y8"
+      }
+    },
+    {
+      "id": "block-1767409053476-av82r6fs0",
+      "type": "divider",
+      "config": {
+        "color": "#e5e7eb",
+        "height": 1,
+        "width": "100%",
+        "style": "solid",
+        "padding": "16px 0",
+        "id": "block-1767409053476-av82r6fs0"
+      }
+    },
+    {
+      "id": "block-1767407767215-tl4neuiz8",
+      "type": "button",
+      "config": {
+        "text": "Cliquez ici",
+        "url": "https://example.com",
+        "bgColor": "#0f172a",
+        "textColor": "#ffffff",
+        "width": "auto",
+        "align": "center",
+        "borderRadius": "13px",
+        "padding": "15px",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "id": "block-1767407767215-tl4neuiz8"
+      }
+    },
+    {
+      "id": "block-1767409151367-nv9gpa9pc",
+      "type": "divider",
+      "config": {
+        "color": "#e5e7eb",
+        "height": 1,
+        "width": "100%",
+        "style": "solid",
+        "padding": "16px 0",
+        "id": "block-1767409151367-nv9gpa9pc"
+      }
+    },
+    {
+      "id": "block-1767535028996-1um28tqoo",
+      "type": "columns3",
+      "config": {
+        "columnCount": 3,
+        "gap": "16px",
+        "padding": "16px",
+        "backgroundColor": "transparent",
+        "borderWidth": "0px",
+        "borderColor": "#e5e7eb",
+        "borderStyle": "solid",
+        "borderRadius": "0px",
+        "columns": [
+          {
+            "blocks": [
+              {
+                "id": "block-1767539088319-3pljzaszd",
+                "type": "article",
+                "config": {
+                  "image": {
+                    "src": "https://placehold.co/1200x600/dbeafe/1e40af.png?text=Article&font=roboto",
+                    "alt": "Image de l'article",
+                    "width": "100%",
+                    "borderRadius": "8px"
+                  },
+                  "title": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "color": "#000000",
+                    "marginTop": "16px",
+                    "marginBottom": "8px"
+                  },
+                  "description": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "normal",
+                    "color": "#000000",
+                    "lineHeight": "1.6"
+                  },
+                  "link": {
+                    "url": "#",
+                    "target": "_blank"
+                  },
+                  "padding": "16px",
+                  "backgroundColor": "transparent",
+                  "borderWidth": "0px",
+                  "borderColor": "#e5e7eb",
+                  "borderStyle": "solid",
+                  "borderRadius": "8px",
+                  "rssField": null,
+                  "id": "block-1767539088319-3pljzaszd"
+                }
+              }
+            ],
+            "verticalAlign": "top",
+            "horizontalAlign": "left",
+            "padding": "16px",
+            "backgroundColor": "transparent",
+            "borderWidth": "0px",
+            "borderColor": "#e5e7eb",
+            "borderStyle": "solid",
+            "borderRadius": "0px"
+          },
+          {
+            "blocks": [
+              {
+                "id": "block-1767539591583-r6gjxq95f",
+                "type": "article",
+                "config": {
+                  "image": {
+                    "src": "https://placehold.co/1200x600/dbeafe/1e40af.png?text=Article&font=roboto",
+                    "alt": "Image de l'article",
+                    "width": "100%",
+                    "borderRadius": "8px"
+                  },
+                  "title": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "color": "#000000",
+                    "marginTop": "16px",
+                    "marginBottom": "8px"
+                  },
+                  "description": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "normal",
+                    "color": "#000000",
+                    "lineHeight": "1.6"
+                  },
+                  "link": {
+                    "url": "#",
+                    "target": "_blank"
+                  },
+                  "padding": "16px",
+                  "backgroundColor": "transparent",
+                  "borderWidth": "0px",
+                  "borderColor": "#e5e7eb",
+                  "borderStyle": "solid",
+                  "borderRadius": "8px",
+                  "rssField": null,
+                  "id": "block-1767539591583-r6gjxq95f"
+                }
+              }
+            ],
+            "verticalAlign": "top",
+            "horizontalAlign": "left",
+            "padding": "16px",
+            "backgroundColor": "transparent",
+            "borderWidth": "0px",
+            "borderColor": "#e5e7eb",
+            "borderStyle": "solid",
+            "borderRadius": "0px"
+          },
+          {
+            "blocks": [
+              {
+                "id": "block-1767539758870-s51cx1rvg",
+                "type": "article",
+                "config": {
+                  "image": {
+                    "src": "https://placehold.co/1200x600/dbeafe/1e40af.png?text=Article&font=roboto",
+                    "alt": "Image de l'article",
+                    "width": "100%",
+                    "borderRadius": "8px"
+                  },
+                  "title": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "color": "#000000",
+                    "marginTop": "16px",
+                    "marginBottom": "8px"
+                  },
+                  "description": {
+                    "text": "Votre texte ici...",
+                    "fontSize": 16,
+                    "fontWeight": "normal",
+                    "color": "#000000",
+                    "lineHeight": "1.6"
+                  },
+                  "link": {
+                    "url": "#",
+                    "target": "_blank"
+                  },
+                  "padding": "16px",
+                  "backgroundColor": "transparent",
+                  "borderWidth": "0px",
+                  "borderColor": "#e5e7eb",
+                  "borderStyle": "solid",
+                  "borderRadius": "8px",
+                  "rssField": null
+                }
+              }
+            ],
+            "verticalAlign": "top",
+            "horizontalAlign": "left",
+            "padding": "16px",
+            "backgroundColor": "transparent",
+            "borderWidth": "0px",
+            "borderColor": "#e5e7eb",
+            "borderStyle": "solid",
+            "borderRadius": "0px"
+          }
+        ],
+        "id": "block-1767535028996-1um28tqoo"
+      }
+    },
+    {
+      "id": "block-1767535052039-v7a3cayd6",
+      "type": "divider",
+      "config": {
+        "color": "#e5e7eb",
+        "height": 1,
+        "width": "100%",
+        "style": "solid",
+        "padding": "10px",
+        "id": "block-1767535052039-v7a3cayd6"
+      }
+    },
+    {
+      "id": "block-1767535048486-jqgqi7lw0",
+      "type": "button",
+      "config": {
+        "text": "Cliquez ici",
+        "url": "https://example.com",
+        "bgColor": "#0f172a",
+        "textColor": "#ffffff",
+        "width": "auto",
+        "align": "center",
+        "borderRadius": "8px",
+        "padding": "15px",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "id": "block-1767535048486-jqgqi7lw0"
+      }
+    },
+    {
+      "id": "block-1767535056540-7fo18nvox",
+      "type": "divider",
+      "config": {
+        "color": "#e5e7eb",
+        "height": 1,
+        "width": "100%",
+        "style": "solid",
+        "padding": "10px",
+        "id": "block-1767535056540-7fo18nvox"
+      }
+    },
+    {
+      "id": "block-1767535123230-kdemviscg",
+      "type": "spacer",
+      "config": {
+        "height": 32,
+        "id": "block-1767535123230-kdemviscg"
+      }
+    },
+    {
+      "id": "block-1767535134418-oa8969gwv",
+      "type": "text",
+      "config": {
+        "text": "Votre texte ici...",
+        "fontSize": 16,
+        "color": "#000000",
+        "align": "left",
+        "lineHeight": 1.5,
+        "fontWeight": "normal",
+        "padding": "16px",
+        "id": "block-1767535134418-oa8969gwv"
+      }
+    }
+  ]
+}
